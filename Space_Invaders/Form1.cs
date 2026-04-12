@@ -11,4 +11,9 @@ public partial class Form1 : Form
     {
         Console.WriteLine("Hello world!");
     }
+
+    // private void player_KeyDown(object sender, KeyEventArgs e)
+    // {
+    //     player.PlayerKeyDown(e);
+    // }
 }

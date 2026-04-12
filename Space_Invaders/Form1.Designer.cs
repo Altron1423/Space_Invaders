@@ -29,7 +29,10 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         button1 = new System.Windows.Forms.Button();
+        player1 = new Space_Invaders.Player(components);
+        player = new Space_Invaders.Player(components);
         SuspendLayout();
         // 
         // button1
@@ -42,15 +45,37 @@ partial class Form1
         button1.UseVisualStyleBackColor = true;
         button1.Click += button1_Click;
         // 
+        // player1
+        // 
+        player1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        player1.Location = new System.Drawing.Point(0, 0);
+        player1.Name = "player1";
+        player1.Size = new System.Drawing.Size(148, 148);
+        player1.TabIndex = 0;
+        // 
+        // player
+        // 
+        player.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        player.Location = new System.Drawing.Point(220, 750);
+        player.Name = "player";
+        player.Size = new System.Drawing.Size(160, 100);
+        player.TabIndex = 1;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        ClientSize = new System.Drawing.Size(800, 450);
+        AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        ClientSize = new System.Drawing.Size(584, 861);
+        Controls.Add(player);
         Controls.Add(button1);
         Text = "Form1";
         ResumeLayout(false);
     }
+
+    private Space_Invaders.Player player;
+
+    private Space_Invaders.Player player1;
 
     private System.Windows.Forms.Button button1;
 

@@ -8,4 +8,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Update="Player.cs">
+        <SubType>Component</SubType>
+      </Compile>
+      <Compile Update="Bullet.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

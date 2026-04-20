@@ -46,7 +46,7 @@ namespace Space_Invaders
             }
         }
 
-        private void PlayerKeyUp(object sender, KeyEventArgs e)
+        public void PlayerKeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.A)
             {
@@ -60,7 +60,7 @@ namespace Space_Invaders
             }
         }
         
-        private void PlayerKeyDown(object sender, KeyEventArgs e)
+        public void PlayerKeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.A && !key_A_press)
             {
@@ -76,6 +76,8 @@ namespace Space_Invaders
             {
                 Console.WriteLine($"Shoot {Left + Width / 2}");
             }
+
+            PlayerMoving();
         }
         
     }

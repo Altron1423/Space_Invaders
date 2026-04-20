@@ -46,8 +46,6 @@ namespace Space_Invaders
             Size = new Size(148, 148);
             Paint += PlayerDraw;
             // MouseClick += Krestik_MouseClick;
-            KeyDown += PlayerKeyDown;
-            KeyUp += PlayerKeyUp;
             ResumeLayout(false);
 
         }

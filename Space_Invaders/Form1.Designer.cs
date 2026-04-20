@@ -41,6 +41,7 @@ partial class Form1
         button1.Name = "button1";
         button1.Size = new System.Drawing.Size(141, 45);
         button1.TabIndex = 0;
+        button1.TabStop = false;
         button1.Text = "Say hello";
         button1.UseVisualStyleBackColor = true;
         button1.Click += button1_Click;
@@ -70,6 +71,9 @@ partial class Form1
         Controls.Add(player);
         Controls.Add(button1);
         Text = "Form1";
+        Load += Form1_Load;
+        KeyDown += player_KeyDown;
+        KeyUp += player_KeyUp;
         ResumeLayout(false);
     }
 

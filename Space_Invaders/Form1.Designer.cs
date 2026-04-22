@@ -67,9 +67,10 @@ partial class Form1
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-        ClientSize = new System.Drawing.Size(584, 861);
+        ClientSize = new System.Drawing.Size(858, 840);
         Controls.Add(player);
         Controls.Add(button1);
+        KeyPreview = true;
         Text = "Form1";
         Load += Form1_Load;
         KeyDown += player_KeyDown;

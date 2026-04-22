@@ -6,10 +6,10 @@ namespace Space_Invaders
     public partial class Player : UserControl
     {
         // int state = 0; // -1 - krest  1 - null
-        
-        int speed=10;
-        private int move_orientetion = 0;
-        bool key_A_press = false, key_D_press = false;
+
+        private int _speed = 10;
+        private int _moveOrientation = 0;
+        private bool _keyAPress = false, _keyDPress = false;
         
         public Player()
         {
@@ -32,17 +32,17 @@ namespace Space_Invaders
             graphics.FillRectangle(Brushes.Green, 0, 0, Width - 1, Height - 1);
         }
 
-        private void PlayerMoving()
+        private void Moving()
         {
-            if (move_orientetion == -1)
+            if (_moveOrientation == -1)
             {
-                if (Left > speed)
-                    Left -= speed;
+                if (Left > _speed)
+                    Left -= _speed;
             }
-            else if (move_orientetion == 1)
+            else if (_moveOrientation == 1)
             {
-                if (Left < Form.ActiveForm.Width - Width - speed*3)
-                    Left += speed;
+                if (Left < Form.ActiveForm.Width - Width - _speed*3)
+                    Left += _speed;
             }
         }
 
@@ -50,34 +50,34 @@ namespace Space_Invaders
         {
             if (e.KeyCode == Keys.A)
             {
-                move_orientetion++;
-                key_A_press = false;
+                _moveOrientation++;
+                _keyAPress = false;
             }
             else if (e.KeyCode == Keys.D)
             {
-                move_orientetion--;
-                key_D_press = false;
+                _moveOrientation--;
+                _keyDPress = false;
             }
         }
         
         public void PlayerKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.A && !key_A_press)
+            if (e.KeyCode == Keys.A && !_keyAPress)
             {
-                key_A_press = true;
-                move_orientetion--;
+                _keyAPress = true;
+                _moveOrientation--;
             }
-            else if (e.KeyCode == Keys.D && !key_D_press)
+            else if (e.KeyCode == Keys.D && !_keyDPress)
             {
-                key_D_press = true;
-                move_orientetion++;
+                _keyDPress = true;
+                _moveOrientation++;
             }
             else if (e.KeyCode == Keys.Space)
             {
                 Console.WriteLine($"Shoot {Left + Width / 2}");
             }
 
-            PlayerMoving();
+            Moving();
         }
         
     }

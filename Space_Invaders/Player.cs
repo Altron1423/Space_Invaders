@@ -3,14 +3,9 @@ using System.ComponentModel;
 
 namespace Space_Invaders
 {
-    public partial class Player : UserControl
+    public partial class Player : Entity
     {
-        // int state = 0; // -1 - krest  1 - null
-
-        private int _speed = 10;
-        private int _moveOrientation = 0;
-        private bool _keyAPress = false, _keyDPress = false;
-        
+        private bool _keyAPress, _keyDPress;
         public Player()
         {
             InitializeComponent();
@@ -21,29 +16,21 @@ namespace Space_Invaders
             container.Add(this);
     
             InitializeComponent();
-            
-            
         }
-        
+
+        protected override void Init()
+        {
+            _health = 3;
+            _speed = 10;
+            _moveOrientation = 0;
+            _keyAPress = false;
+            _keyDPress = false;
+        }
         
         private void PlayerDraw(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
             graphics.FillRectangle(Brushes.Green, 0, 0, Width - 1, Height - 1);
-        }
-
-        private void Moving()
-        {
-            if (_moveOrientation == -1)
-            {
-                if (Left > _speed)
-                    Left -= _speed;
-            }
-            else if (_moveOrientation == 1)
-            {
-                if (Left < Form.ActiveForm.Width - Width - _speed*3)
-                    Left += _speed;
-            }
         }
 
         public void PlayerKeyUp(KeyEventArgs e)
@@ -80,6 +67,7 @@ namespace Space_Invaders
             Moving();
         }
         
+        public override void Die() {}
     }
 }
 

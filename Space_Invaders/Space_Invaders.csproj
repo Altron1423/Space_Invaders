@@ -9,10 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Update="Player.cs">
-        <SubType>Component</SubType>
-      </Compile>
+      <Compile Update="Player.cs" />
       <Compile Update="Bullet.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="Entity.cs">
         <SubType>UserControl</SubType>
       </Compile>
     </ItemGroup>

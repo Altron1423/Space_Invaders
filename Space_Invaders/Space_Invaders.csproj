@@ -9,11 +9,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Update="Player.cs" />
-      <Compile Update="Bullet.cs">
+      <Compile Update="Forms\Form1.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\Form2.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="entities\Enemy.cs">
         <SubType>UserControl</SubType>
       </Compile>
-      <Compile Update="Entity.cs">
+      <Compile Update="entities\Entity.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="entities\Player.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="projectiles\Projectile.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="projectiles\Bullet.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="projectiles\Powerup.cs">
         <SubType>UserControl</SubType>
       </Compile>
     </ItemGroup>

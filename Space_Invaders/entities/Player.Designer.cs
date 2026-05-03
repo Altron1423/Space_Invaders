@@ -44,10 +44,9 @@ namespace Space_Invaders
             BorderStyle = BorderStyle.FixedSingle;
             Name = "Player";
             Size = new Size(148, 148);
-            Paint += PlayerDraw;
+            Paint += Draw;
             // MouseClick += Krestik_MouseClick;
             ResumeLayout(false);
-
         }
     
         #endregion

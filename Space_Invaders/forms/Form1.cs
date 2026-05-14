@@ -126,6 +126,6 @@ public partial class Form1 : Form
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-        player.Moving();
+        player.Update();
     }
 }

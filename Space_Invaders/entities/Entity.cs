@@ -4,8 +4,6 @@ public abstract partial class Entity : UserControl
 {
     protected int _health;
     protected int _speed;
-    // protected int _cooldown;
-    // protected int _cooldownTime = 0;
     protected int _moveOrientation;
     protected Brush _brush;
     protected int _left_border = 0;
@@ -29,8 +27,18 @@ public abstract partial class Entity : UserControl
         Graphics graphics = e.Graphics;
         graphics.FillRectangle(_brush, 0, 0, Width - 1, Height - 1);
     }
+
+    public void Update()
+    {
+        // if (_health <= 0)
+        // {
+        //     Die();
+        //     return;
+        // }
+        Moving();
+    }
     
-    public void Moving()
+    protected void Moving()
     {
         if (_moveOrientation == -1)
         {

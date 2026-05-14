@@ -38,6 +38,7 @@ partial class Form1
         pause_button = new System.Windows.Forms.Button();
         continue_button = new System.Windows.Forms.Button();
         exit_button = new System.Windows.Forms.Button();
+        timer1 = new System.Windows.Forms.Timer(components);
         SuspendLayout();
         // 
         // start_button
@@ -145,6 +146,12 @@ partial class Form1
         exit_button.MouseLeave += button_MouseLeave;
         exit_button.MouseMove += button_MouseMove;
         // 
+        // timer1
+        // 
+        timer1.Enabled = true;
+        timer1.Interval = 20;
+        timer1.Tick += timer1_Tick;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -165,6 +172,8 @@ partial class Form1
         KeyUp += player_KeyUp;
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.Timer timer1;
 
     private Space_Invaders.Player player;
 

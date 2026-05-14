@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 
 
 namespace Space_Invaders;
@@ -6,6 +7,8 @@ namespace Space_Invaders;
 public partial class Player : Entity
 {
     private bool _keyAPress, _keyDPress;
+    private readonly Stopwatch _cooldownTimer = new ();
+    private TimeSpan _cooldownDuration;
     public Player()
     {
         InitializeComponent();
@@ -25,7 +28,8 @@ public partial class Player : Entity
         _moveOrientation = 0;
         _keyAPress = false;
         _keyDPress = false;
-        _cooldown = 10;
+        _cooldownDuration = TimeSpan.FromSeconds(0.5);
+        _cooldownTimer.Start();
         _brush = Brushes.Green;
     }
 
@@ -57,14 +61,12 @@ public partial class Player : Entity
         }
         else if (e.KeyCode == Keys.Space)
         {
-            if (_cooldownTime <= 1)
+            if (_cooldownTimer.Elapsed >= _cooldownDuration)
             {
-                _cooldownTime = _cooldown;
+                _cooldownTimer.Restart();
                 Console.WriteLine($"Shoot {Left + Width / 2}");
             }
         }
-
-        Moving();
     }
     
     public override void Die() {}

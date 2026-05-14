@@ -81,12 +81,14 @@ public partial class Form1 : Form
     {
         if (_paused)
         {// pause off
+            timer1.Enabled = true;
             continue_button.Visible = false;
             exit_button.Visible = false;
         }
         else
         {// pause on
             pause_button.BackColor = Color.Maroon;
+            timer1.Enabled = false;
             
             continue_button.Visible = true;
             exit_button.Visible = true;
@@ -96,6 +98,7 @@ public partial class Form1 : Form
 
     private void ContinueClick(object sender, EventArgs e)
     {
+        timer1.Enabled = true;
         continue_button.Visible = false;
         exit_button.Visible = false;
         
@@ -119,5 +122,10 @@ public partial class Form1 : Form
             form2.ShowDialog();
             Close();
         }
+    }
+
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+        player.Moving();
     }
 }

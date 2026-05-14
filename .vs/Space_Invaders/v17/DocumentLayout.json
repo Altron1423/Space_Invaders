@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\Space_Invaders\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\forms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\forms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\projectiles\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\projectiles\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\projectiles\\powerup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\projectiles\\powerup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\projectiles\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\projectiles\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Projectile.cs",
+              "DocumentMoniker": "D:\\Projects\\Space_Invaders\\Space_Invaders\\projectiles\\Projectile.cs",
+              "RelativeDocumentMoniker": "Space_Invaders\\projectiles\\Projectile.cs",
+              "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\projectiles\\Projectile.cs",
+              "RelativeToolTip": "Space_Invaders\\projectiles\\Projectile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T12:25:14.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Powerup.cs",
+              "DocumentMoniker": "D:\\Projects\\Space_Invaders\\Space_Invaders\\projectiles\\Powerup.cs",
+              "RelativeDocumentMoniker": "Space_Invaders\\projectiles\\Powerup.cs",
+              "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\projectiles\\Powerup.cs",
+              "RelativeToolTip": "Space_Invaders\\projectiles\\Powerup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T12:25:02.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "D:\\Projects\\Space_Invaders\\Space_Invaders\\projectiles\\Bullet.cs",
+              "RelativeDocumentMoniker": "Space_Invaders\\projectiles\\Bullet.cs",
+              "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\projectiles\\Bullet.cs",
+              "RelativeToolTip": "Space_Invaders\\projectiles\\Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T12:00:37.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form1.cs",
+              "RelativeDocumentMoniker": "Space_Invaders\\forms\\Form1.cs",
+              "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form1.cs*",
+              "RelativeToolTip": "Space_Invaders\\forms\\Form1.cs*",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAuwJgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T11:59:50.158Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

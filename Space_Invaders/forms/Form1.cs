@@ -1,3 +1,5 @@
+using System.Drawing.Text;
+
 namespace Space_Invaders;
 
 public partial class Form1 : Form
@@ -34,9 +36,13 @@ public partial class Form1 : Form
 
     private void RunGame(object sender, EventArgs e)
     {
+        enemies = new Enemy[30];
+        powerups = new Powerup[10];
+        bullets = new Bullet[10];
+
         player.SetBorder(left_fon.Width, right_fon.Left);
         _paused = false;
-        
+
         start_button.Visible = false;
         player.Visible = true;
         right_fon.Visible = true;
@@ -95,7 +101,7 @@ public partial class Form1 : Form
         {// pause on
             pause_button.BackColor = Color.Maroon;
             timer1.Enabled = false;
-            
+
             continue_button.Visible = true;
             exit_button.Visible = true;
         }
@@ -107,7 +113,7 @@ public partial class Form1 : Form
         timer1.Enabled = true;
         continue_button.Visible = false;
         exit_button.Visible = false;
-        
+
         _paused = false;
     }
 
@@ -130,8 +136,36 @@ public partial class Form1 : Form
         }
     }
 
+
     private void timer1_Tick(object sender, EventArgs e)
     {
+        if (_paused) return;
+
         player.Update();
+
+
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy != null)
+                enemy.Update();
+        }
+
+        foreach (Powerup powerup in powerups)
+        {
+            Player[] p = new Player[1];
+            p[0] = player;
+            powerup.Update(p);
+
+        }
+
+
+        foreach (Bullet bullet in bullets)
+        {
+            Player[] p = new Player[1];
+            p[0] = player;
+            bullet.Update(p);
+            bullet.Update(enemies);
+        }
     }
+
 }

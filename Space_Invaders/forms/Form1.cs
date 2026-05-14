@@ -3,7 +3,10 @@ namespace Space_Invaders;
 public partial class Form1 : Form
 {
     private bool _paused = true;
-    
+    private Enemy[] enemies;
+    private Powerup[] powerups;
+    private Bullet[] bullets;
+
     public Form1()
     {
         InitializeComponent();
@@ -39,6 +42,9 @@ public partial class Form1 : Form
         right_fon.Visible = true;
         left_fon.Visible = true;
         pause_button.Visible = true;
+
+        left_fon.Enabled = false;
+        right_fon.Enabled = false;
     }
 
     private void player_KeyDown(object sender, KeyEventArgs e)

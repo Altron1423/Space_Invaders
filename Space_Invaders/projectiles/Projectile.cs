@@ -3,14 +3,19 @@ namespace Space_Invaders;
 public abstract partial class Projectile : UserControl
 {
     protected int _speed;
-    
+    protected Form1 _parentForm;
+
     public Projectile()
     {
         InitializeComponent();
     }
 
+    public void SetParentForm(Form1 form)
+    {
+        _parentForm = form;
+    }
 
-    public void Update(Entity[] m)
+    public void Update(Entity[] entities)
     {
         if (IsOutOfBounds())
         {
@@ -18,29 +23,42 @@ public abstract partial class Projectile : UserControl
         }
         else
         {
-            Entity entity;
-            for (int i = 0; i < m.Length; i++)
+            // Движение снаряда (вниз для бонусов)
+            Top += _speed; // Изменено: теперь += для движения вниз
+
+            // Проверка столкновений
+            if (entities != null)
             {
-                entity = m[i];
-                if (CheckIntersectsWith(entity))
+                foreach (Entity entity in entities)
                 {
-                    IntersectsWith(entity);
-                    Delete();
+                    if (entity != null && entity.Visible && entity.IsHandleCreated && CheckIntersectsWith(entity))
+                    {
+                        IntersectsWith(entity);
+                        // Всегда удаляем после столкновения
+                        Delete();
+                        break;
+                    }
                 }
             }
         }
     }
-    
+
     protected void Delete()
     {
-        
+        _parentForm?.RemoveProjectile(this);
+        Visible = false;
     }
 
     private bool CheckIntersectsWith(Entity entity)
     {
-        return false;
+        return Bounds.IntersectsWith(entity.Bounds);
     }
-    protected bool IsOutOfBounds() {return false;}
-    
+
+    protected bool IsOutOfBounds()
+    {
+        // Для бонусов проверяем только нижнюю границу
+        return Top > _parentForm?.ClientSize.Height + 100;
+    }
+
     protected abstract void IntersectsWith(Entity entity);
 }

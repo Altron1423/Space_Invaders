@@ -7,6 +7,8 @@ namespace Space_Invaders;
 
 public partial class Player : Entity
 {
+    const int FIRE_TYPE = 2;
+    
     private bool _keyAPress, _keyDPress;
     private readonly Stopwatch _cooldownTimer = new ();
     private TimeSpan _cooldownDuration;
@@ -93,6 +95,30 @@ public partial class Player : Entity
     public float GetDoubleShotRemaining() => _doubleShotRemaining;
     public float GetShieldRemaining() => _shieldRemaining;
 
+    
+    public PlayerShotEnum Shot
+    {
+        get
+        {
+            bool sh = _shoot;
+            if (FIRE_TYPE == 1)
+                _shoot = false;
+            if (_cooldownTimer.Elapsed >= _cooldownDuration)
+            {
+                _cooldownTimer.Restart();
+                PlayerShotEnum value = PlayerShotEnum.None;
+                if (!sh) {}
+                else if (_doubleShotActive)
+                    return PlayerShotEnum.TwoShot;
+                else
+                    return PlayerShotEnum.OneShot;
+            }
+            return PlayerShotEnum.None;
+            
+        }
+    }
+
+    
     // ������ ��� ����� �������� �������
     public void PausePowerupTimers()
     {
@@ -126,6 +152,8 @@ public partial class Player : Entity
             _moveOrientation--;
             _keyDPress = false;
         }
+        else if (e.KeyCode == Keys.Space && FIRE_TYPE == 2)
+            _shoot = false;
     }
 
     public void PlayerKeyDown(KeyEventArgs e)
@@ -141,14 +169,7 @@ public partial class Player : Entity
             _moveOrientation++;
         }
         else if (e.KeyCode == Keys.Space)
-        {
-            if (_cooldownTimer.Elapsed >= _cooldownDuration)
-            {
-                _cooldownTimer.Restart();
-                _shoot = true;
-                Console.WriteLine($"Shoot {Left + Width / 2}");
-            }
-        }
+            _shoot = true;
     }
     
     public override void TakeDamage(int amount)
@@ -213,6 +234,8 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
+    
+    
     public void ActivateDoubleShot(float duration)
     {
         if (!_doubleShotActive)
@@ -252,6 +275,8 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
+    
+    
     public void ActivateShield(float duration)
     {
         if (!_hasShield)
@@ -298,6 +323,9 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
+    
+    
+    
     public void AddExtraLife()
     {
         if (_health < 3)

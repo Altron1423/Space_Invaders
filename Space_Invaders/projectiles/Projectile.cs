@@ -23,6 +23,7 @@ public abstract partial class Projectile : UserControl
     public void Update()
     {
         // Console.WriteLine($"IsOutOfBounds() {IsOutOfBounds()}");
+        // Console.WriteLine($"{Top}, {Left}");
         if (IsOutOfBounds())
         {
             _delete = true;

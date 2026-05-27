@@ -86,13 +86,12 @@ public partial class Form1 : Form
     private void SpawnRandomPowerup(object sender, EventArgs e)
     {
         if (_paused) return;
+        Console.WriteLine("Spawning random powerup");
 
         int randomX = _random.Next(left_fon.Width + 20, right_fon.Left - 50);
         int randomY = 20;
-        PowerupType randomBonus = (PowerupType)_random.Next(4);
-        int randomSpeed = _random.Next(3, 8);
-
-        AddPowerup(randomBonus, randomSpeed, randomX, randomY);
+        
+        SpawnPowerupAtPosition(randomX, randomY);
     }
 
     public void UpdateHealthDisplay(int health)
@@ -238,10 +237,7 @@ public partial class Form1 : Form
         
         if (_paused) return;
         player.Update();
-        if (player.Shoot)
-        {
-            Shoot(player);
-        }
+        Shoot(player);
         
         UpdatePowerupIndicators();
         
@@ -261,7 +257,12 @@ public partial class Form1 : Form
         List<Powerup> powerups = new List<Powerup>();
         foreach (Powerup powerup in _powerups)
         {
+            powerup.Update();
             powerup.TestInteractWith(player);
+            if (powerup.Delete)
+            {
+                powerups.Add(powerup);
+            };
         }
         RemovePowerup(powerups);
         
@@ -270,7 +271,6 @@ public partial class Form1 : Form
         foreach (Bullet bullet in _bullets)
         {
             bullet.Update();
-            // log(bullet);
             bullet.TestInteractWith(player);
             bullet.TestInteractWith(_enemies);
             if (bullet.Delete)

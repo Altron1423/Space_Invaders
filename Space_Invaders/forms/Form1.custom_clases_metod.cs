@@ -25,6 +25,7 @@ public partial class Form1
         Powerup powerup = new Powerup(randomBonus, randomSpeed, x, y);
         powerup.SetParentForm(this);
         _powerups.Add(powerup);
+        Controls.Add(powerup);
     }
 
     public void RemovePowerup(List<Powerup> powerups)
@@ -35,7 +36,6 @@ public partial class Form1
             Controls.Remove(powerup);
         }
     }
-    
     
     public void AddEnemy(Enemy enemy)
     {
@@ -52,22 +52,35 @@ public partial class Form1
         }
     }
     
-    
     private void Shoot(Entity entity)
     {
         // Console.WriteLine(entity.GetType());
         // Console.WriteLine(entity.GetType() == player.GetType());
         bool isPlayerShoot = entity.GetType() == player.GetType();
-        int damage = 1, speed = 10;
         if (isPlayerShoot)
         {
-            damage = 1;
+            int damage = 1, speed = 10;
+            PlayerShotEnum shot = player.Shot;
+            if (shot != PlayerShotEnum.None)
+                Console.WriteLine(shot);
+            if (shot == PlayerShotEnum.OneShot)
+            {
+                int bulletX = player.Left + player.Width / 2 - 2;
+                int bulletY = player.Top - 10;
+                Bullet bullet = new Bullet(true, damage, speed, bulletX, bulletY);
+                AddBullet(bullet);
+            }
+            else if (shot == PlayerShotEnum.TwoShot) {
+                int bulletX1 = player.Left + player.Width / 2 - 12;
+                int bulletX2 = player.Left + player.Width / 2 + 8;
+                int bulletY = player.Top - 10;
+
+                Bullet bullet1 = new Bullet(true, damage, speed, bulletX1, bulletY);
+                Bullet bullet2 = new Bullet(true, damage, speed, bulletX2, bulletY);
+                AddBullet(bullet1);
+                AddBullet(bullet2);
+            }
         }
-        Bullet bullet = new(
-            isPlayerShoot, damage, speed,
-            entity.Location.X + player.Width / 2, entity.Location.Y - 30
-            );
-        AddBullet(bullet);
     }
     
     private void SpawnPowerupAtPosition(int x, int y)
@@ -83,6 +96,7 @@ public partial class Form1
         enemy.Location = new Point(x, y);
         enemy.Size = new Size(40, 40);
         
+        AddEnemy(enemy);
     }
     
 }

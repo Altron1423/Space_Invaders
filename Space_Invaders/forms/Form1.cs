@@ -31,8 +31,6 @@ public partial class Form1 : Form
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
     }
 
-    public bool IsPaused => _paused;
-
     private void Form1_Load(object sender, EventArgs e)
     {
         player.SetParentForm(this);
@@ -95,44 +93,6 @@ public partial class Form1 : Form
         int randomSpeed = _random.Next(3, 8);
 
         AddPowerup(randomBonus, randomSpeed, randomX, randomY);
-    }
-
-    private void SpawnPowerupAtPosition(int x, int y)
-    {
-        PowerupType randomBonus = (PowerupType)_random.Next(4);
-        int randomSpeed = _random.Next(3, 8);
-        AddPowerup(randomBonus, randomSpeed, x, y);
-    }
-
-    public void AddBullet(Bullet bullet)
-    {
-        bullet.SetParentForm(this);
-        _bullets.Add(bullet);
-        Controls.Add(bullet);
-        bullet.BringToFront();
-    }
-
-    public void AddPowerup(PowerupType randomBonus, int randomSpeed, int x, int y)
-    {
-        Powerup powerup = new Powerup(randomBonus, randomSpeed, x, y);
-        powerup.SetParentForm(this);
-        _powerups.Add(powerup);
-    }
-
-    public void RemoveProjectile(Projectile projectile)
-    {
-        if (projectile is Bullet bullet)
-        {
-            _bullets.Remove(bullet);
-            Controls.Remove(bullet);
-        }
-        else if (projectile is Powerup powerup)
-        {
-            _powerups.Remove(powerup);
-            Controls.Remove(powerup);
-            Controls.Remove(powerup);
-        }
-        projectile.Dispose();
     }
 
     public void UpdateHealthDisplay(int health)
@@ -242,6 +202,91 @@ public partial class Form1 : Form
         MessageBox.Show("Игра окончена!", "Space Invaders", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
+    private void BringButtonsToFront()
+    {
+        continue_button.BringToFront();
+        exit_button.BringToFront();
+        button1.BringToFront();
+        pause_button.BringToFront();
+    }
+
+    private void SendPowerupsToBack()
+    {
+        if (_powerups != null)
+        {
+            foreach (var powerup in _powerups)
+            {
+                if (powerup != null && powerup.Visible)
+                {
+                    powerup.SendToBack();
+                }
+            }
+        }
+        foreach (var bullet in _bullets)
+        {
+            if (bullet != null && bullet.Visible)
+            {
+                bullet.SendToBack();
+            }
+        }
+    }
+
+
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+        _tick++;
+        
+        if (_paused) return;
+        player.Update();
+        if (player.Shoot)
+        {
+            Shoot(player);
+        }
+        
+        UpdatePowerupIndicators();
+        
+
+        List<Enemy> enemies = new List<Enemy>();
+        foreach (Enemy enemy in _enemies)
+        {
+            enemy.Update();
+            if (enemy.Health == 0)
+            {
+                enemies.Add(enemy);
+            }
+        }
+        RemoveEnemy(enemies);
+
+        
+        List<Powerup> powerups = new List<Powerup>();
+        foreach (Powerup powerup in _powerups)
+        {
+            powerup.TestInteractWith(player);
+        }
+        RemovePowerup(powerups);
+        
+        
+        List<Bullet> bullets = new List<Bullet>();
+        foreach (Bullet bullet in _bullets)
+        {
+            bullet.Update();
+            // log(bullet);
+            bullet.TestInteractWith(player);
+            bullet.TestInteractWith(_enemies);
+            if (bullet.Delete)
+            {
+                bullets.Add(bullet);
+            };
+        }
+        RemoveBullet(bullets);
+    }
+
+
+    
+    
+//        //        \\
+//       || buttons ||
+//       \\        //
     private void player_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Escape)
@@ -260,20 +305,8 @@ public partial class Form1 : Form
         if (e.KeyCode == Keys.R)
         {
             // Console.WriteLine(_enemies);
-            _enemies.Add(summon_enemy(275 + _enemies.Count * 30, 40 + _enemies.Count % 3 * 10));
+            summon_enemy(275 + _enemies.Count * 30, 40 + _enemies.Count % 3 * 10);
         }
-    }
-
-
-    private Enemy summon_enemy(int x, int y)
-    {
-        Enemy enemy = new Enemy();
-        enemy.Location = new Point(x, y);
-        enemy.Size = new Size(40, 40);
-    
-        Controls.Add(enemy);
-        
-        return enemy;
     }
     
     private void player_KeyUp(object sender, KeyEventArgs e)
@@ -337,141 +370,6 @@ public partial class Form1 : Form
         _paused = !_paused;
     }
 
-    private void BringButtonsToFront()
-    {
-        continue_button.BringToFront();
-        exit_button.BringToFront();
-        button1.BringToFront();
-        pause_button.BringToFront();
-    }
-
-    private void SendPowerupsToBack()
-    {
-        if (_powerups != null)
-        {
-            foreach (var powerup in _powerups)
-            {
-                if (powerup != null && powerup.Visible)
-                {
-                    powerup.SendToBack();
-                }
-            }
-        }
-        foreach (var bullet in _bullets)
-        {
-            if (bullet != null && bullet.Visible)
-            {
-                bullet.SendToBack();
-            }
-        }
-    }
-
-    private void ContinueClick(object sender, EventArgs e)
-    {
-        timer1.Enabled = true;
-        _powerupSpawnTimer.Enabled = true;
-        player.ResumePowerupTimers();
-        continue_button.Visible = false;
-        exit_button.Visible = false;
-        _paused = false;
-        button1.Visible = false;
-        button2.Visible = false;
-
-        SendPowerupsToBack();
-    }
-
-    private void ButtonExit(object sender, EventArgs e)
-    {
-        var otvet = MessageBox.Show("Вы уверены, что хотите завершить?", "Space Invaders", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        if (otvet == DialogResult.Yes)
-        {
-            Form2 form2 = new Form2();
-            form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(
-                Location.X + (Width - form2.Width) / 2,
-                Location.Y + (Height - form2.Height) / 2
-            );
-            Hide();
-            form2.ShowDialog();
-            Close();
-        }
-    }
-
-    private void Shoot(Entity entity)
-    {
-        // Console.WriteLine(entity.GetType());
-        // Console.WriteLine(entity.GetType() == player.GetType());
-        bool isPlayerShoot = entity.GetType() == player.GetType();
-        int damage = 1, speed = 10;
-        if (isPlayerShoot)
-        {
-            damage = 1;
-        }
-        Bullet bullet = new(
-            isPlayerShoot, damage, speed,
-            entity.Location.X + player.Width / 2, entity.Location.Y - 30
-            );
-        _bullets.Add(bullet);
-        Controls.Add(bullet);
-    }
-
-    private void timer1_Tick(object sender, EventArgs e)
-    {
-        _tick++;
-        
-        if (_paused) return;
-
-        player.Update();
-        if (player.Shoot)
-        {
-            Shoot(player);
-        }
-        player.Top = this.ClientSize.Height - player.Height - 2;
-        UpdatePowerupIndicators();
-        
-
-        List<Entity> enemies = new List<Entity>();
-        
-        foreach (Enemy enemy in _enemies)
-        {
-            enemy.Update();
-            if (enemy.Health == 0)
-            {
-                enemies.Add(enemy);
-            }
-        }
-
-        foreach (Entity enemy in enemies)
-        {
-            _enemies.Remove(enemy);
-            Controls.Remove(enemy);
-        }
-
-        foreach (Powerup powerup in _powerups)
-        {
-            powerup.TestInteractWith(player);
-        }
-        
-        List<Bullet> bullets = new List<Bullet>();
-        foreach (Bullet bullet in _bullets)
-        {
-            bullet.Update();
-            // log(bullet);
-            bullet.TestInteractWith(player);
-            bullet.TestInteractWith(_enemies);
-            if (bullet.Delete)
-            {
-                bullets.Add(bullet);
-            };
-        }
-
-        foreach (Bullet bullet in bullets)
-        {
-            _bullets.Remove(bullet);
-            Controls.Remove(bullet);
-        }
-    }
-
     private void button1_Click(object sender, EventArgs e)
     {
         Form3 form3 = new Form3();
@@ -511,4 +409,37 @@ public partial class Form1 : Form
         form5.ShowDialog();
         Close();
     }
+    
+    private void ContinueClick(object sender, EventArgs e)
+    {
+        timer1.Enabled = true;
+        _powerupSpawnTimer.Enabled = true;
+        player.ResumePowerupTimers();
+        continue_button.Visible = false;
+        exit_button.Visible = false;
+        _paused = false;
+        button1.Visible = false;
+        button2.Visible = false;
+
+        SendPowerupsToBack();
+    }
+
+    private void ButtonExit(object sender, EventArgs e)
+    {
+        var otvet = MessageBox.Show("Вы уверены, что хотите завершить?", "Space Invaders", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        if (otvet == DialogResult.Yes)
+        {
+            Form2 form2 = new Form2();
+            form2.StartPosition = FormStartPosition.Manual;
+            form2.Location = new Point(
+                Location.X + (Width - form2.Width) / 2,
+                Location.Y + (Height - form2.Height) / 2
+            );
+            Hide();
+            form2.ShowDialog();
+            Close();
+        }
+    }
+    
+    public bool IsPaused => _paused;
 }

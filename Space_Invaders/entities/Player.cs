@@ -64,6 +64,17 @@ public partial class Player : Entity
         _keyAPress = false;
         _keyDPress = false;
         _brush = Brushes.Green;
+        this.DoubleBuffered = true; // Включаем двойную буферизацию
+    }
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
+        // Рисуем игрока с текущим цветом в зависимости от щита
+        using (SolidBrush brush = new SolidBrush(_hasShield ? Color.Cyan : Color.Green))
+        {
+            e.Graphics.FillRectangle(brush, 0, 0, Width - 1, Height - 1);
+        }
     }
 
     public int GetHealth() => _health;
@@ -74,6 +85,27 @@ public partial class Player : Entity
     public float GetSpeedBoostRemaining() => _speedBoostRemaining;
     public float GetDoubleShotRemaining() => _doubleShotRemaining;
     public float GetShieldRemaining() => _shieldRemaining;
+
+    // Методы для паузы таймеров бонусов
+    public void PausePowerupTimers()
+    {
+        if (_speedBoostTimer.Enabled)
+            _speedBoostTimer.Stop();
+        if (_doubleShotTimer.Enabled)
+            _doubleShotTimer.Stop();
+        if (_shieldTimer.Enabled)
+            _shieldTimer.Stop();
+    }
+
+    public void ResumePowerupTimers()
+    {
+        if (_speedBoostActive && !_speedBoostTimer.Enabled)
+            _speedBoostTimer.Start();
+        if (_doubleShotActive && !_doubleShotTimer.Enabled)
+            _doubleShotTimer.Start();
+        if (_hasShield && !_shieldTimer.Enabled)
+            _shieldTimer.Start();
+    }
 
     public void PlayerKeyUp(KeyEventArgs e)
     {
@@ -240,12 +272,14 @@ public partial class Player : Entity
             _shieldRemaining = duration;
             _shieldTimer.Start();
 
-            // Визуальный индикатор - меняем цвет игрока
-            _brush = Brushes.Cyan;
+            // Принудительно перерисовываем игрока с новым цветом
+            this.Invalidate();
+
             _parentForm?.UpdatePowerupIndicators();
         }
         else
         {
+            // Продлеваем действие
             _shieldRemaining = Math.Max(_shieldRemaining, duration);
         }
     }
@@ -270,7 +304,9 @@ public partial class Player : Entity
         _shieldRemaining = 0;
         _shieldTimer.Stop();
 
-        _brush = Brushes.Green;
+        // Принудительно перерисовываем игрока с обычным цветом
+        this.Invalidate();
+
         _parentForm?.UpdatePowerupIndicators();
     }
 

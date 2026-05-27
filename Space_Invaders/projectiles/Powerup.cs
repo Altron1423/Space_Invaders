@@ -64,21 +64,25 @@ public partial class Powerup : Projectile
                 this.BackColor = Color.Black;
                 _iconLabel.Text = "⚡";
                 _iconLabel.ForeColor = Color.DarkBlue;
+                _iconLabel.Font = new Font("Segoe UI", 20, FontStyle.Bold); 
                 break;
             case PowerupType.DoubleShot:
                 this.BackColor = Color.Black;
                 _iconLabel.Text = "✧";
                 _iconLabel.ForeColor = Color.DarkOrange;
+                _iconLabel.Font = new Font("Segoe UI", 20, FontStyle.Bold);
                 break;
             case PowerupType.Shield:
                 this.BackColor = Color.Black;
                 _iconLabel.Text = "🛡️";
                 _iconLabel.ForeColor = Color.DarkGreen;
+                _iconLabel.Font = new Font("Segoe UI", 17, FontStyle.Bold);
                 break;
             case PowerupType.ExtraLife:
                 this.BackColor = Color.Black;
                 _iconLabel.Text = "❤️";
                 _iconLabel.ForeColor = Color.Red;
+                _iconLabel.Font = new Font("Segoe UI", 15, FontStyle.Bold);
                 break;
         }
     }
@@ -92,7 +96,7 @@ public partial class Powerup : Projectile
             case PowerupType.DoubleShot:
                 return 5.0f;
             case PowerupType.Shield:
-                return 3.0f;
+                return 5.0f;
             case PowerupType.ExtraLife:
                 return 0.0f;
             default:

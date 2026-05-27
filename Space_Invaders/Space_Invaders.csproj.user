@@ -4,5 +4,14 @@
     <Compile Update="forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="forms\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="forms\Form5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="forms\Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

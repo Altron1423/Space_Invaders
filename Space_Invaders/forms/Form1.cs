@@ -1,3 +1,4 @@
+using Space_Invaders.forms;
 using System.ComponentModel;
 using System.Drawing.Text;
 
@@ -29,6 +30,8 @@ public partial class Form1 : Form
         _powerupSpawnTimer.Interval = 3000;
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
     }
+
+    public bool IsPaused => _paused;
 
     private void Form1_Load(object sender, EventArgs e)
     {
@@ -67,12 +70,13 @@ public partial class Form1 : Form
         progressBar3.Visible = true;
 
         // Инициализация индикаторов
-        UpdateHealthDisplay(3); 
+        UpdateHealthDisplay(3);
         ResetPowerupIndicators();
 
         timer1.Start();
         _powerupSpawnTimer.Start();
     }
+
     private void SpawnRandomPowerup(object sender, EventArgs e)
     {
         if (_paused) return;
@@ -144,26 +148,28 @@ public partial class Form1 : Form
             }
         }
     }
+
     private void ResetPowerupIndicators()
     {
         if (progressBar1 != null)
         {
             progressBar1.Maximum = 100;
-            progressBar1.Value = 30;
+            progressBar1.Value = 0;
         }
 
         if (progressBar2 != null)
         {
             progressBar2.Maximum = 100;
-            progressBar2.Value = 30;
+            progressBar2.Value = 0;
         }
 
         if (progressBar3 != null)
         {
             progressBar3.Maximum = 100;
-            progressBar3.Value = 30;
+            progressBar3.Value = 0;
         }
     }
+
     public void UpdatePowerupIndicators()
     {
         if (player == null) return;
@@ -177,12 +183,13 @@ public partial class Form1 : Form
                 float maxDuration = 5.0f;
                 int value = (int)((remaining / maxDuration) * 100);
                 progressBar1.Value = Math.Max(0, Math.Min(100, value));
-                progressBar1.ForeColor = Color.Yellow; // Меняем цвет на желтый при активном бонусе
+                progressBar1.ForeColor = Color.Blue;
+                progressBar1.Style = ProgressBarStyle.Continuous;
             }
             else
             {
                 progressBar1.Value = 0;
-                progressBar1.ForeColor = Color.Green;
+                progressBar1.ForeColor = Color.Blue;
             }
         }
 
@@ -210,7 +217,7 @@ public partial class Form1 : Form
             if (player.HasShield())
             {
                 float remaining = player.GetShieldRemaining();
-                float maxDuration = 3.0f;
+                float maxDuration = 5.0f;
                 int value = (int)((remaining / maxDuration) * 100);
                 progressBar3.Value = Math.Max(0, Math.Min(100, value));
                 progressBar3.ForeColor = Color.Yellow;
@@ -233,6 +240,15 @@ public partial class Form1 : Form
 
     private void player_KeyDown(object sender, KeyEventArgs e)
     {
+        if (e.KeyCode == Keys.Escape)
+        {
+            if (pause_button.Visible && pause_button.Enabled)
+            {
+                PauseClick(pause_button, EventArgs.Empty);
+            }
+            return;
+        }
+
         if (!_paused)
         {
             player.PlayerKeyDown(e);
@@ -273,28 +289,74 @@ public partial class Form1 : Form
         {
             timer1.Enabled = true;
             _powerupSpawnTimer.Enabled = true;
+            player.ResumePowerupTimers();
             continue_button.Visible = false;
             exit_button.Visible = false;
             pause_button.BackColor = Color.FromArgb(255, 0, 64, 0);
+
+            SendPowerupsToBack();
         }
         else
         {
             pause_button.BackColor = Color.Maroon;
             timer1.Enabled = false;
             _powerupSpawnTimer.Enabled = false;
+            player.PausePowerupTimers();
             continue_button.Visible = true;
             exit_button.Visible = true;
+            button1.Visible = true;
+            button2.Visible = true;
+
+            // Поднимаем кнопки на передний план
+            BringButtonsToFront();
+
+            // Отправляем бонусы на задний план
+            SendPowerupsToBack();
         }
         _paused = !_paused;
+    }
+
+    private void BringButtonsToFront()
+    {
+        continue_button.BringToFront();
+        exit_button.BringToFront();
+        button1.BringToFront();
+        pause_button.BringToFront();
+    }
+
+    private void SendPowerupsToBack()
+    {
+        if (powerups != null)
+        {
+            foreach (var powerup in powerups)
+            {
+                if (powerup != null && powerup.Visible)
+                {
+                    powerup.SendToBack();
+                }
+            }
+        }
+        foreach (var bullet in bullets)
+        {
+            if (bullet != null && bullet.Visible)
+            {
+                bullet.SendToBack();
+            }
+        }
     }
 
     private void ContinueClick(object sender, EventArgs e)
     {
         timer1.Enabled = true;
         _powerupSpawnTimer.Enabled = true;
+        player.ResumePowerupTimers();
         continue_button.Visible = false;
         exit_button.Visible = false;
         _paused = false;
+        button1.Visible = false;
+        button2.Visible = false;
+
+        SendPowerupsToBack();
     }
 
     private void ButtonExit(object sender, EventArgs e)
@@ -320,7 +382,7 @@ public partial class Form1 : Form
 
         player.Update();
 
-        // Обновляем индикаторы каждый тик
+        player.Top = this.ClientSize.Height - player.Height - 2;
         UpdatePowerupIndicators();
 
         if (enemies != null)
@@ -406,5 +468,45 @@ public partial class Form1 : Form
         }
         Controls.Remove(powerup);
         powerup.Dispose();
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        Form3 form3 = new Form3();
+        form3.StartPosition = FormStartPosition.Manual;
+        form3.Location = new Point(
+            Location.X + (Width - form3.Width) / 2,
+            Location.Y + (Height - form3.Height) / 2
+        );
+        Hide();
+        form3.ShowDialog();
+        Close();
+    }
+
+    private void exit_button_MouseLeave(object sender, EventArgs e)
+    {
+        Button bt = sender as Button;
+        bt.BackColor = Color.Maroon;
+        bt.ForeColor = Color.White;
+    }
+
+    private void exit_button_MouseMove(object sender, MouseEventArgs e)
+    {
+        Button bt = sender as Button;
+        bt.BackColor = Color.Firebrick;
+        bt.ForeColor = Color.Black;
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+        Form5 form5 = new Form5();
+        form5.StartPosition = FormStartPosition.Manual;
+        form5.Location = new Point(
+            Location.X + (Width - form5.Width) / 2,
+            Location.Y + (Height - form5.Height) / 2
+        );
+        Hide();
+        form5.ShowDialog();
+        Close();
     }
 }

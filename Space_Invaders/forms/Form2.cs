@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Space_Invaders.forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,6 +44,16 @@ namespace Space_Invaders
             this.Hide();
             form1.ShowDialog();
             this.Close();
+
+            //Form6 form6 = new Form6();
+            //form6.StartPosition = FormStartPosition.Manual;
+            //form6.Location = new Point(
+            //    Location.X + (Width - form6.Width) / 2,
+            //    Location.Y + (Height - form6.Height) / 2
+            //);
+            //Hide();
+            //form6.ShowDialog();
+            //Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -53,26 +65,56 @@ namespace Space_Invaders
 
         private void button1_MouseMove(object sender, MouseEventArgs e)
         {
-            button1.BackColor = Color.DarkGreen;
-            button1.ForeColor = Color.Black;
+            Button bt = sender as Button;
+            bt.BackColor = Color.DarkGreen;
+            bt.ForeColor = Color.Black;
         }
 
         private void button1_MouseLeave(object sender, EventArgs e)
         {
-            button1.BackColor = Color.FromArgb(255, 0, 64, 0);
-            button1.ForeColor = Color.White;
+            Button bt = sender as Button;
+            bt.BackColor = Color.FromArgb(255, 0, 64, 0);
+            bt.ForeColor = Color.White;
         }
 
         private void button2_MouseMove(object sender, MouseEventArgs e)
         {
-            button2.BackColor = Color.Firebrick;
-            button2.ForeColor = Color.Black;
+            Button bt = sender as Button;
+            bt.BackColor = Color.Firebrick;
+            bt.ForeColor = Color.Black;
         }
 
         private void button2_MouseLeave(object sender, EventArgs e)
         {
-            button2.BackColor = Color.Maroon;
-            button2.ForeColor = Color.White;
+            Button bt = sender as Button;
+            bt.BackColor = Color.Maroon;
+            bt.ForeColor = Color.White;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.StartPosition = FormStartPosition.Manual;
+            form3.Location = new Point(
+                Location.X + (Width - form3.Width) / 2,
+                Location.Y + (Height - form3.Height) / 2
+            );
+            Hide();
+            form3.ShowDialog();
+            Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form5 form5 = new Form5();
+            form5.StartPosition = FormStartPosition.Manual;
+            form5.Location = new Point(
+                Location.X + (Width - form5.Width) / 2,
+                Location.Y + (Height - form5.Height) / 2
+            );
+            Hide();
+            form5.ShowDialog();
+            Close();
         }
     }
 }

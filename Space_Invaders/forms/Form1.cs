@@ -94,46 +94,42 @@ public partial class Form1 : Form
         PowerupType randomBonus = (PowerupType)_random.Next(4);
         int randomSpeed = _random.Next(3, 8);
 
-        Powerup powerup = new Powerup(randomBonus, randomSpeed, randomX, randomY);
-        AddPowerup(powerup);
+        AddPowerup(randomBonus, randomSpeed, randomX, randomY);
     }
 
     private void SpawnPowerupAtPosition(int x, int y)
     {
         PowerupType randomBonus = (PowerupType)_random.Next(4);
         int randomSpeed = _random.Next(3, 8);
-        Powerup powerup = new Powerup(randomBonus, randomSpeed, x, y);
-        AddPowerup(powerup);
+        AddPowerup(randomBonus, randomSpeed, x, y);
     }
 
     public void AddBullet(Bullet bullet)
     {
         bullet.SetParentForm(this);
-        bullets.Add(bullet);
+        _bullets.Add(bullet);
         Controls.Add(bullet);
         bullet.BringToFront();
+    }
+
+    public void AddPowerup(PowerupType randomBonus, int randomSpeed, int x, int y)
+    {
+        Powerup powerup = new Powerup(randomBonus, randomSpeed, x, y);
+        powerup.SetParentForm(this);
+        _powerups.Add(powerup);
     }
 
     public void RemoveProjectile(Projectile projectile)
     {
         if (projectile is Bullet bullet)
         {
-            bullets.Remove(bullet);
+            _bullets.Remove(bullet);
             Controls.Remove(bullet);
         }
         else if (projectile is Powerup powerup)
         {
-            if (powerups != null)
-            {
-                for (int i = 0; i < powerups.Length; i++)
-                {
-                    if (powerups[i] == powerup)
-                    {
-                        powerups[i] = null;
-                        break;
-                    }
-                }
-            }
+            _powerups.Remove(powerup);
+            Controls.Remove(powerup);
             Controls.Remove(powerup);
         }
         projectile.Dispose();
@@ -264,7 +260,7 @@ public partial class Form1 : Form
         if (e.KeyCode == Keys.R)
         {
             // Console.WriteLine(_enemies);
-            _enemies.Add(summon_enemy(250 + _enemies.Count * 30, 40 + _enemies.Count % 3 * 10));
+            _enemies.Add(summon_enemy(275 + _enemies.Count * 30, 40 + _enemies.Count % 3 * 10));
         }
     }
 
@@ -351,9 +347,9 @@ public partial class Form1 : Form
 
     private void SendPowerupsToBack()
     {
-        if (powerups != null)
+        if (_powerups != null)
         {
-            foreach (var powerup in powerups)
+            foreach (var powerup in _powerups)
             {
                 if (powerup != null && powerup.Visible)
                 {
@@ -361,7 +357,7 @@ public partial class Form1 : Form
                 }
             }
         }
-        foreach (var bullet in bullets)
+        foreach (var bullet in _bullets)
         {
             if (bullet != null && bullet.Visible)
             {
@@ -410,7 +406,6 @@ public partial class Form1 : Form
         if (isPlayerShoot)
         {
             damage = 1;
-            speed = -speed;
         }
         Bullet bullet = new(
             isPlayerShoot, damage, speed,

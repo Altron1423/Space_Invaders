@@ -1,3 +1,5 @@
+using System.Drawing.Drawing2D;
+
 namespace Space_Invaders;
 
 public partial class Bullet : Projectile
@@ -12,20 +14,18 @@ public partial class Bullet : Projectile
         _speed = speed;
         InitializeComponent();
 
-        BackColor = Color.Yellow;
         Size = new Size(4, 12);
         Location = new Point(x, y);
         Visible = true;
 
         if (_isPlayerShoot)
         {
-            _speed = -_speed; // ���� ������ ����� ����� (������������� ��������)
-            this.BackColor = Color.Yellow;
+            _speed = -_speed; // ���� ������ ����� ����� (������������� ��������) 
+            _brush = new SolidBrush(Color.Yellow);
         }
         else
         {
-            _speed = Math.Abs(_speed); // ���� ������ ����� ���� (������������� ��������)
-            this.BackColor = Color.Red;
+            _brush = new SolidBrush(Color.Red);
         }
     }
 

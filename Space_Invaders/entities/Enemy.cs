@@ -22,5 +22,9 @@ public partial class Enemy : Entity
         InitializeComponent();
     }
     
+    protected override void Init()
+    {
+        _brush = Brushes.Red;
+    }
     public override void Die() {}
 }

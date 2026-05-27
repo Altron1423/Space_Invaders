@@ -33,6 +33,7 @@ partial class Bullet
     {
         components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        Paint += Draw;
     }
 
     #endregion

@@ -2,12 +2,13 @@ namespace Space_Invaders;
 
 public abstract partial class Entity : UserControl
 {
-    protected int _health;
+    protected int _health = 1;
     protected int _speed;
     protected int _moveOrientation;
     protected Brush _brush;
     protected int _left_border = 0;
     protected int _right_border = 0;
+    protected bool _shoot = false;
     
     public Entity()
     {
@@ -25,6 +26,7 @@ public abstract partial class Entity : UserControl
     protected void Draw(object sender, PaintEventArgs e)
     {
         Graphics graphics = e.Graphics;
+        Console.WriteLine($"{Width - 1}, {Height - 1}");
         graphics.FillRectangle(_brush, 0, 0, Width - 1, Height - 1);
     }
 
@@ -65,4 +67,19 @@ public abstract partial class Entity : UserControl
     }
 
     public abstract void Die();
+
+    public bool Shoot
+    {
+        get
+        {
+            bool value = _shoot;
+            _shoot = false;
+            return value;
+        }
+    }
+
+    public int Health
+    {
+        get { return _health; }
+    }
 }

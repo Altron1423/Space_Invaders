@@ -7,9 +7,11 @@ namespace Space_Invaders;
 public partial class Form1 : Form
 {
     private bool _paused = true;
-    private Enemy[] enemies;
-    private Powerup[] powerups;
-    private List<Bullet> bullets;
+    private List<Entity> _enemies;
+    private List<Powerup> _powerups;
+    private List<Bullet> _bullets;
+
+    private int _tick = 0;
     private System.Windows.Forms.Timer _powerupSpawnTimer;
     private Random _random = new Random();
 
@@ -24,8 +26,6 @@ public partial class Form1 : Form
         right_fon.FlatAppearance.MouseOverBackColor = right_fon.BackColor;
         left_fon.FlatAppearance.MouseOverBackColor = left_fon.BackColor;
 
-        bullets = new List<Bullet>();
-
         _powerupSpawnTimer = new System.Windows.Forms.Timer();
         _powerupSpawnTimer.Interval = 3000;
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
@@ -39,13 +39,21 @@ public partial class Form1 : Form
         player.Focus();
         KeyPreview = true;
         player.TabStop = true;
+
+        // Для PictureBox или Panel нужно установить:
+        player.TabStop = true; // Разрешить получение фокуса
+        _enemies = new List<Entity>();
+        _powerups = new List<Powerup>();
+        _bullets = new List<Bullet>();
     }
 
+    private void log(object text)
+    {
+        Console.WriteLine($"{_tick}: {text}");
+    }
+    
     private void RunGame(object sender, EventArgs e)
     {
-        enemies = new Enemy[30];
-        powerups = new Powerup[10];
-        bullets.Clear();
 
         player.SetBorder(left_fon.Width, right_fon.Left);
         player.Location = new Point((left_fon.Width + right_fon.Left) / 2 - player.Width / 2,
@@ -253,8 +261,25 @@ public partial class Form1 : Form
         {
             player.PlayerKeyDown(e);
         }
+        if (e.KeyCode == Keys.R)
+        {
+            // Console.WriteLine(_enemies);
+            _enemies.Add(summon_enemy(250 + _enemies.Count * 30, 40 + _enemies.Count % 3 * 10));
+        }
     }
 
+
+    private Enemy summon_enemy(int x, int y)
+    {
+        Enemy enemy = new Enemy();
+        enemy.Location = new Point(x, y);
+        enemy.Size = new Size(40, 40);
+    
+        Controls.Add(enemy);
+        
+        return enemy;
+    }
+    
     private void player_KeyUp(object sender, KeyEventArgs e)
     {
         if (!_paused)
@@ -376,98 +401,80 @@ public partial class Form1 : Form
         }
     }
 
+    private void Shoot(Entity entity)
+    {
+        // Console.WriteLine(entity.GetType());
+        // Console.WriteLine(entity.GetType() == player.GetType());
+        bool isPlayerShoot = entity.GetType() == player.GetType();
+        int damage = 1, speed = 10;
+        if (isPlayerShoot)
+        {
+            damage = 1;
+            speed = -speed;
+        }
+        Bullet bullet = new(
+            isPlayerShoot, damage, speed,
+            entity.Location.X + player.Width / 2, entity.Location.Y - 30
+            );
+        _bullets.Add(bullet);
+        Controls.Add(bullet);
+    }
+
     private void timer1_Tick(object sender, EventArgs e)
     {
+        _tick++;
+        
         if (_paused) return;
 
         player.Update();
-
+        if (player.Shoot)
+        {
+            Shoot(player);
+        }
         player.Top = this.ClientSize.Height - player.Height - 2;
         UpdatePowerupIndicators();
+        
 
-        if (enemies != null)
+        List<Entity> enemies = new List<Entity>();
+        
+        foreach (Enemy enemy in _enemies)
         {
-            foreach (Enemy enemy in enemies)
+            enemy.Update();
+            if (enemy.Health == 0)
             {
-                if (enemy != null && enemy.Visible)
-                    enemy.Update();
+                enemies.Add(enemy);
             }
         }
 
-        if (powerups != null)
+        foreach (Entity enemy in enemies)
         {
-            for (int i = 0; i < powerups.Length; i++)
-            {
-                if (powerups[i] != null && powerups[i].Visible)
-                {
-                    powerups[i].Update(new Entity[] { player });
-                }
-            }
+            _enemies.Remove(enemy);
+            Controls.Remove(enemy);
         }
 
-        for (int i = bullets.Count - 1; i >= 0; i--)
+        foreach (Powerup powerup in _powerups)
         {
-            if (bullets[i] != null && bullets[i].Visible)
+            powerup.TestInteractWith(player);
+        }
+        
+        List<Bullet> bullets = new List<Bullet>();
+        foreach (Bullet bullet in _bullets)
+        {
+            bullet.Update();
+            // log(bullet);
+            bullet.TestInteractWith(player);
+            bullet.TestInteractWith(_enemies);
+            if (bullet.Delete)
             {
-                bullets[i].Update(enemies);
-            }
+                bullets.Add(bullet);
+            };
         }
 
-        Invalidate();
-    }
-
-    public void AddPowerup(Powerup powerup)
-    {
-        powerup.SetParentForm(this);
-
-        if (powerups != null)
+        foreach (Bullet bullet in bullets)
         {
-            for (int i = 0; i < powerups.Length; i++)
-            {
-                if (powerups[i] == null)
-                {
-                    powerups[i] = powerup;
-                    break;
-                }
-            }
+            _bullets.Remove(bullet);
+            Controls.Remove(bullet);
         }
-
-        Controls.Add(powerup);
-        powerup.BringToFront();
-    }
-
-    public void RemoveEnemy(Enemy enemy)
-    {
-        if (enemies != null)
-        {
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                if (enemies[i] == enemy)
-                {
-                    enemies[i] = null;
-                    break;
-                }
-            }
-        }
-        Controls.Remove(enemy);
-        enemy.Dispose();
-    }
-
-    public void RemovePowerup(Powerup powerup)
-    {
-        if (powerups != null)
-        {
-            for (int i = 0; i < powerups.Length; i++)
-            {
-                if (powerups[i] == powerup)
-                {
-                    powerups[i] = null;
-                    break;
-                }
-            }
-        }
-        Controls.Remove(powerup);
-        powerup.Dispose();
     }
 
     private void button1_Click(object sender, EventArgs e)

@@ -93,28 +93,48 @@ namespace Space_Invaders
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            Form3 form3 = new Form3(this); // Передаём ссылку на Form2
             form3.StartPosition = FormStartPosition.Manual;
             form3.Location = new Point(
                 Location.X + (Width - form3.Width) / 2,
                 Location.Y + (Height - form3.Height) / 2
             );
-            Hide();
-            form3.ShowDialog();
-            Close();
+            Hide(); // Скрываем Form2
+            form3.ShowDialog(); // Открываем Form3 в модальном режиме
+                                // Close() убран — Form2 не закрывается
+            Show(); // Показываем Form2 снова после закрытия Form3
+            //Form3 form3 = new Form3();
+            //form3.StartPosition = FormStartPosition.Manual;
+            //form3.Location = new Point(
+            //    Location.X + (Width - form3.Width) / 2,
+            //    Location.Y + (Height - form3.Height) / 2
+            //);
+            //Hide();
+            //form3.ShowDialog();
+            //Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5();
+            Form5 form5 = new Form5(this); // Передаём ссылку на Form2
             form5.StartPosition = FormStartPosition.Manual;
             form5.Location = new Point(
                 Location.X + (Width - form5.Width) / 2,
                 Location.Y + (Height - form5.Height) / 2
             );
-            Hide();
-            form5.ShowDialog();
-            Close();
+            Hide(); // Скрываем Form2
+            form5.ShowDialog(); // Открываем Form5 в модальном режиме
+                                // Close() убран — Form2 не закрывается
+            Show(); // Показываем Form2 снова после закрытия Form5
+            //Form5 form5 = new Form5();
+            //form5.StartPosition = FormStartPosition.Manual;
+            //form5.Location = new Point(
+            //    Location.X + (Width - form5.Width) / 2,
+            //    Location.Y + (Height - form5.Height) / 2
+            //);
+            //Hide();
+            //form5.ShowDialog();
+            //Close();
         }
     }
 }

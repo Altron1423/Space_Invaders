@@ -346,6 +346,8 @@ public partial class Form1 : Form
             player.ResumePowerupTimers();
             continue_button.Visible = false;
             exit_button.Visible = false;
+            button1.Visible = false;  // Добавьте эту строку
+            button2.Visible = false;  // Добавьте эту строку
             pause_button.BackColor = Color.FromArgb(255, 0, 64, 0);
 
             SendPowerupsToBack();
@@ -372,7 +374,7 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        Form3 form3 = new Form3();
+        Form3 form3 = new Form3(this); // Передаём ссылку на текущую форму
         form3.StartPosition = FormStartPosition.Manual;
         form3.Location = new Point(
             Location.X + (Width - form3.Width) / 2,
@@ -380,7 +382,15 @@ public partial class Form1 : Form
         );
         Hide();
         form3.ShowDialog();
-        Close();
+        //Form3 form3 = new Form3();
+        //form3.StartPosition = FormStartPosition.Manual;
+        //form3.Location = new Point(
+        //    Location.X + (Width - form3.Width) / 2,
+        //    Location.Y + (Height - form3.Height) / 2
+        //);
+        //Hide();
+        //form3.ShowDialog();
+        //Close();
     }
 
     private void exit_button_MouseLeave(object sender, EventArgs e)
@@ -399,7 +409,7 @@ public partial class Form1 : Form
 
     private void button2_Click(object sender, EventArgs e)
     {
-        Form5 form5 = new Form5();
+        Form5 form5 = new Form5(this); // Передаём ссылку на текущую форму
         form5.StartPosition = FormStartPosition.Manual;
         form5.Location = new Point(
             Location.X + (Width - form5.Width) / 2,
@@ -407,7 +417,15 @@ public partial class Form1 : Form
         );
         Hide();
         form5.ShowDialog();
-        Close();
+        //Form5 form5 = new Form5();
+        //form5.StartPosition = FormStartPosition.Manual;
+        //form5.Location = new Point(
+        //    Location.X + (Width - form5.Width) / 2,
+        //    Location.Y + (Height - form5.Height) / 2
+        //);
+        //Hide();
+        //form5.ShowDialog();
+        //Close();
     }
     
     private void ContinueClick(object sender, EventArgs e)

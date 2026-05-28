@@ -12,12 +12,16 @@ namespace Space_Invaders.forms
 {
     public partial class Form3 : Form
     {
-        public Form3()
+        private Form _parentForm;
+
+        public Form3(Form parentForm)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+
+            _parentForm = parentForm;
 
             this.StartPosition = FormStartPosition.Manual;
             if (Screen.PrimaryScreen != null)
@@ -29,15 +33,18 @@ namespace Space_Invaders.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(
-                Location.X + (Width - form2.Width) / 2,
-                Location.Y + (Height - form2.Height) / 2
-            );
-            Hide();
-            form2.ShowDialog();
-            Close();
+            this.Hide();
+            _parentForm.Show();
+            this.Close();
+            //Form2 form2 = new Form2();
+            //form2.StartPosition = FormStartPosition.Manual;
+            //form2.Location = new Point(
+            //    Location.X + (Width - form2.Width) / 2,
+            //    Location.Y + (Height - form2.Height) / 2
+            //);
+            //Hide();
+            //form2.ShowDialog();
+            //Close();
         }
 
         private void button1_MouseMove(object sender, MouseEventArgs e)

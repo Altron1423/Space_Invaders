@@ -30,8 +30,8 @@ public abstract partial class Projectile : UserControl
         }
         else
         {
-            // �������� ������� (���� ��� �������)
-            Top += _speed; // ��������: ������ += ��� �������� ����
+            // Движение снаряда (вниз для бонусов)
+            Top += _speed; // Изменено: теперь += для движения вниз
         }
         // Console.WriteLine($"_delete {_delete}");
     }

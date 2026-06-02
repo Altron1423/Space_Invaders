@@ -15,7 +15,7 @@ public partial class Player : Entity
     
     private Form1 _parentForm;
 
-    // ���������� ��� �������
+    // Переменные для бонусов
     private bool _hasShield = false;
     private bool _doubleShotActive = false;
     private bool _speedBoostActive = false;
@@ -24,7 +24,7 @@ public partial class Player : Entity
     private System.Windows.Forms.Timer _shieldTimer;
     private int _originalSpeed;
 
-    // ������� ����� �������� ������� (� ��������)
+    // Текущее время действия бонусов (в секундах)
     private float _speedBoostRemaining = 0;
     private float _doubleShotRemaining = 0;
     private float _shieldRemaining = 0;
@@ -45,7 +45,7 @@ public partial class Player : Entity
     private void InitializePowerupTimers()
     {
         _speedBoostTimer = new System.Windows.Forms.Timer();
-        _speedBoostTimer.Interval = 300; //��������� ������ 300��
+        _speedBoostTimer.Interval = 300; //обнавляем каждые 300мс
         _speedBoostTimer.Tick += (s, e) => UpdateSpeedBoost();
 
         _doubleShotTimer = new System.Windows.Forms.Timer();
@@ -73,13 +73,13 @@ public partial class Player : Entity
         _cooldownDuration = TimeSpan.FromSeconds(0.5);
         _cooldownTimer.Start();
         _brush = Brushes.Green;
-        this.DoubleBuffered = true; // �������� ������� �����������
+        this.DoubleBuffered = true; // Включаем двойную буферизацию
     }
 
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
-        // ������ ������ � ������� ������ � ����������� �� ����
+        // Рисуем игрока с текущим цветом в зависимости от щита
         using (SolidBrush brush = new SolidBrush(_hasShield ? Color.Cyan : Color.Green))
         {
             e.Graphics.FillRectangle(brush, 0, 0, Width - 1, Height - 1);
@@ -118,8 +118,8 @@ public partial class Player : Entity
         }
     }
 
-    
-    // ������ ��� ����� �������� �������
+
+    // Методы для паузы таймеров бонусов
     public void PausePowerupTimers()
     {
         if (_speedBoostTimer.Enabled)
@@ -176,7 +176,7 @@ public partial class Player : Entity
     {
         if (_hasShield)
         {
-            return;         // ��� ��������� ����
+            return;         // щит поглощает урон
         }
 
         _health -= amount;
@@ -190,7 +190,7 @@ public partial class Player : Entity
         _parentForm?.GameOver();
     }
 
-    // ������ ��� �������
+    // Методы для бонусов
     public void ActivateSpeedBoost(float duration)
     {
         if (!_speedBoostActive)
@@ -201,12 +201,12 @@ public partial class Player : Entity
             _speedBoostRemaining = duration;
             _speedBoostTimer.Start();
 
-            // ���������� ��������� �� ������
+            // Визуальный индикатор не меняем
             _parentForm?.UpdatePowerupIndicators();
         }
         else
         {
-            // ���������� ��������
+            // Продлеваем действие
             _speedBoostRemaining = Math.Max(_speedBoostRemaining, duration);
         }
     }
@@ -244,7 +244,7 @@ public partial class Player : Entity
             _doubleShotRemaining = duration;
             _doubleShotTimer.Start();
 
-            // ���������� ��������� - ������ �� ������ � �������
+            // Визуальный индикатор - ничего не меняем с игроком
             _parentForm?.UpdatePowerupIndicators();
         }
         else
@@ -285,14 +285,14 @@ public partial class Player : Entity
             _shieldRemaining = duration;
             _shieldTimer.Start();
 
-            // ������������� �������������� ������ � ����� ������
+            // Принудительно перерисовываем игрока с новым цветом
             this.Invalidate();
 
             _parentForm?.UpdatePowerupIndicators();
         }
         else
         {
-            // ���������� ��������
+            // Продлеваем действие
             _shieldRemaining = Math.Max(_shieldRemaining, duration);
         }
     }
@@ -317,7 +317,7 @@ public partial class Player : Entity
         _shieldRemaining = 0;
         _shieldTimer.Stop();
 
-        // ������������� �������������� ������ � ������� ������
+        // Принудительно перерисовываем игрока с обычным цветом
         this.Invalidate();
 
         _parentForm?.UpdatePowerupIndicators();

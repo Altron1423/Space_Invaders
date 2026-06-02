@@ -49,7 +49,7 @@ public partial class Form1 : Form
     {
         Console.WriteLine($"{_tick}: {text}");
     }
-    
+
     private void RunGame(object sender, EventArgs e)
     {
 
@@ -71,6 +71,8 @@ public partial class Form1 : Form
         label2.Visible = true;
         label3.Visible = true;
         label4.Visible = true;
+        label5.Visible = true;
+        label6.Visible = true;
         progressBar1.Visible = true;
         progressBar2.Visible = true;
         progressBar3.Visible = true;
@@ -90,7 +92,7 @@ public partial class Form1 : Form
 
         int randomX = _random.Next(left_fon.Width + 20, right_fon.Left - 50);
         int randomY = 20;
-        
+
         SpawnPowerupAtPosition(randomX, randomY);
     }
 
@@ -118,18 +120,21 @@ public partial class Form1 : Form
         {
             progressBar1.Maximum = 100;
             progressBar1.Value = 0;
+            progressBar1.BackColor = Color.FromArgb(255, 64, 64, 64); 
         }
 
         if (progressBar2 != null)
         {
             progressBar2.Maximum = 100;
             progressBar2.Value = 0;
+            progressBar2.BackColor = Color.FromArgb(255, 64, 64, 64);
         }
 
         if (progressBar3 != null)
         {
             progressBar3.Maximum = 100;
             progressBar3.Value = 0;
+            progressBar3.BackColor = Color.FromArgb(255, 64, 64, 64);
         }
     }
 
@@ -137,7 +142,7 @@ public partial class Form1 : Form
     {
         if (player == null) return;
 
-        // Обновляем индикатор скорости (progressBar1)
+        // Обновляем индикатор скорости (progressBar1 - синий при активации)
         if (progressBar1 != null)
         {
             if (player.HasSpeedBoost())
@@ -146,17 +151,17 @@ public partial class Form1 : Form
                 float maxDuration = 5.0f;
                 int value = (int)((remaining / maxDuration) * 100);
                 progressBar1.Value = Math.Max(0, Math.Min(100, value));
-                progressBar1.ForeColor = Color.Blue;
-                progressBar1.Style = ProgressBarStyle.Continuous;
+                progressBar1.ProgressColor = Color.Blue;
             }
             else
             {
                 progressBar1.Value = 0;
-                progressBar1.ForeColor = Color.Blue;
+                progressBar1.ProgressColor = Color.Gray;
             }
+            progressBar1.Invalidate();
         }
 
-        // Обновляем индикатор двойного выстрела (progressBar2)
+        // Обновляем индикатор двойного выстрела (progressBar2 - оранжевый при активации)
         if (progressBar2 != null)
         {
             if (player.HasDoubleShot())
@@ -165,16 +170,17 @@ public partial class Form1 : Form
                 float maxDuration = 5.0f;
                 int value = (int)((remaining / maxDuration) * 100);
                 progressBar2.Value = Math.Max(0, Math.Min(100, value));
-                progressBar2.ForeColor = Color.Yellow;
+                progressBar2.ProgressColor = Color.Orange;
             }
             else
             {
                 progressBar2.Value = 0;
-                progressBar2.ForeColor = Color.Orange;
+                progressBar2.ProgressColor = Color.Gray;
             }
+            progressBar2.Invalidate();
         }
 
-        // Обновляем индикатор щита (progressBar3)
+        // Обновляем индикатор щита (progressBar3 - зелёный при активации)
         if (progressBar3 != null)
         {
             if (player.HasShield())
@@ -183,16 +189,16 @@ public partial class Form1 : Form
                 float maxDuration = 5.0f;
                 int value = (int)((remaining / maxDuration) * 100);
                 progressBar3.Value = Math.Max(0, Math.Min(100, value));
-                progressBar3.ForeColor = Color.Yellow;
+                progressBar3.ProgressColor = Color.Green;
             }
             else
             {
                 progressBar3.Value = 0;
-                progressBar3.ForeColor = Color.Cyan;
+                progressBar3.ProgressColor = Color.Gray;
             }
+            progressBar3.Invalidate();
         }
     }
-
     public void GameOver()
     {
         _powerupSpawnTimer.Stop();
@@ -234,13 +240,13 @@ public partial class Form1 : Form
     private void timer1_Tick(object sender, EventArgs e)
     {
         _tick++;
-        
+
         if (_paused) return;
         player.Update();
         Shoot(player);
-        
+
         UpdatePowerupIndicators();
-        
+
 
         List<Enemy> enemies = new List<Enemy>();
         foreach (Enemy enemy in _enemies)
@@ -253,7 +259,7 @@ public partial class Form1 : Form
         }
         RemoveEnemy(enemies);
 
-        
+
         List<Powerup> powerups = new List<Powerup>();
         foreach (Powerup powerup in _powerups)
         {
@@ -262,11 +268,12 @@ public partial class Form1 : Form
             if (powerup.Delete)
             {
                 powerups.Add(powerup);
-            };
+            }
+            ;
         }
         RemovePowerup(powerups);
-        
-        
+
+
         List<Bullet> bullets = new List<Bullet>();
         foreach (Bullet bullet in _bullets)
         {
@@ -276,17 +283,18 @@ public partial class Form1 : Form
             if (bullet.Delete)
             {
                 bullets.Add(bullet);
-            };
+            }
+            ;
         }
         RemoveBullet(bullets);
     }
 
 
-    
-    
-//        //        \\
-//       || buttons ||
-//       \\        //
+
+
+    //        //        \\
+    //       || buttons ||
+    //       \\        //
     private void player_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Escape)
@@ -308,7 +316,7 @@ public partial class Form1 : Form
             summon_enemy(275 + _enemies.Count * 30, 40 + _enemies.Count % 3 * 10);
         }
     }
-    
+
     private void player_KeyUp(object sender, KeyEventArgs e)
     {
         if (!_paused)
@@ -404,7 +412,7 @@ public partial class Form1 : Form
     {
         Button bt = sender as Button;
         bt.BackColor = Color.Firebrick;
-        bt.ForeColor = Color.Black;
+        bt.ForeColor = Color.FromArgb(255, 64, 64, 64); 
     }
 
     private void button2_Click(object sender, EventArgs e)
@@ -427,7 +435,7 @@ public partial class Form1 : Form
         //form5.ShowDialog();
         //Close();
     }
-    
+
     private void ContinueClick(object sender, EventArgs e)
     {
         timer1.Enabled = true;
@@ -458,6 +466,6 @@ public partial class Form1 : Form
             Close();
         }
     }
-    
+
     public bool IsPaused => _paused;
 }

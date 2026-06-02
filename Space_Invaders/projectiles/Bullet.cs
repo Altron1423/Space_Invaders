@@ -20,7 +20,7 @@ public partial class Bullet : Projectile
 
         if (_isPlayerShoot)
         {
-            _speed = -_speed; // ���� ������ ����� ����� (������������� ��������) 
+            _speed = -_speed; // Пули игрока летят вверх (отрицательная скорость)
             _brush = new SolidBrush(Color.Yellow);
         }
         else
@@ -31,7 +31,7 @@ public partial class Bullet : Projectile
 
     protected override void IntersectsWith(Entity entity)
     {
-        // ���� ������� ���� ������ ������
+        // Пули наносят урон только врагам
         if (_isPlayerShoot && entity is Enemy)
         {
             entity.TakeDamage(_damage);

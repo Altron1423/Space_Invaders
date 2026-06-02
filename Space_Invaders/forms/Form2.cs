@@ -33,33 +33,33 @@ namespace Space_Invaders
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            //Form1 form1 = new Form1();
 
-            form1.StartPosition = FormStartPosition.Manual;
-            form1.Location = new Point(
-                this.Location.X + (this.Width - form1.Width) / 2,
-                this.Location.Y + (this.Height - form1.Height) / 2
-            );
-
-            this.Hide();
-            form1.ShowDialog();
-            this.Close();
-
-            //Form6 form6 = new Form6();
-            //form6.StartPosition = FormStartPosition.Manual;
-            //form6.Location = new Point(
-            //    Location.X + (Width - form6.Width) / 2,
-            //    Location.Y + (Height - form6.Height) / 2
+            //form1.StartPosition = FormStartPosition.Manual;
+            //form1.Location = new Point(
+            //    this.Location.X + (this.Width - form1.Width) / 2,
+            //    this.Location.Y + (this.Height - form1.Height) / 2
             //);
-            //Hide();
-            //form6.ShowDialog();
-            //Close();
+
+            //this.Hide();
+            //form1.ShowDialog();
+            //this.Close();
+
+            Form6 form6 = new Form6();
+            form6.StartPosition = FormStartPosition.Manual;
+            form6.Location = new Point(
+                Location.X + (Width - form6.Width) / 2,
+                Location.Y + (Height - form6.Height) / 2
+            );
+            Hide();
+            form6.ShowDialog();
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var otvet = MessageBox.Show("Вы уверены, что хотите выйти?", "Space Invaders", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (otvet == DialogResult.Yes)
+            //var otvet = MessageBox.Show("Вы уверены, что хотите выйти?", "Space Invaders", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (otvet == DialogResult.Yes)
                 Application.Exit();
         }
 
@@ -81,7 +81,7 @@ namespace Space_Invaders
         {
             Button bt = sender as Button;
             bt.BackColor = Color.Firebrick;
-            bt.ForeColor = Color.Black;
+            bt.ForeColor = Color.FromArgb(255, 64, 64, 64); 
         }
 
         private void button2_MouseLeave(object sender, EventArgs e)

@@ -51,7 +51,7 @@ namespace Space_Invaders.forms
         {
             Button bt = sender as Button;
             bt.BackColor = Color.Firebrick;
-            bt.ForeColor = Color.Black;
+            bt.ForeColor = Color.FromArgb(255, 64, 64, 64);
         }
 
         private void button1_MouseLeave(object sender, EventArgs e)

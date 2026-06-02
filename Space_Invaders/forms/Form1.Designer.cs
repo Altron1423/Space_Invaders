@@ -40,14 +40,16 @@ partial class Form1
         exit_button = new Button();
         timer1 = new System.Windows.Forms.Timer(components);
         label1 = new Label();
-        progressBar1 = new ProgressBar();
-        progressBar2 = new ProgressBar();
-        progressBar3 = new ProgressBar();
+        progressBar1 = new CustomProgressBar();
+        progressBar2 = new CustomProgressBar();
+        progressBar3 = new CustomProgressBar();
         label2 = new Label();
         label3 = new Label();
         label4 = new Label();
         button1 = new Button();
         button2 = new Button();
+        label5 = new Label();
+        label6 = new Label();
         SuspendLayout();
         // 
         // start_button
@@ -89,7 +91,7 @@ partial class Form1
         // 
         left_fon.BackColor = Color.FromArgb(64, 64, 64);
         left_fon.FlatStyle = FlatStyle.Flat;
-        left_fon.Location = new Point(0, -5);
+        left_fon.Location = new Point(-3, -5);
         left_fon.Name = "left_fon";
         left_fon.Size = new Size(250, 574);
         left_fon.TabIndex = 2;
@@ -177,19 +179,19 @@ partial class Form1
         // 
         // progressBar1
         // 
-        progressBar1.BackColor = SystemColors.Highlight;
+        progressBar1.BackColor = Color.FromArgb(240, 240, 240);
+        progressBar1.ForeColor = Color.Gray;
         progressBar1.Location = new Point(746, 76);
         progressBar1.Margin = new Padding(2);
         progressBar1.Name = "progressBar1";
         progressBar1.Size = new Size(105, 20);
-        progressBar1.Style = ProgressBarStyle.Continuous;
         progressBar1.TabIndex = 8;
         progressBar1.Visible = false;
         // 
         // progressBar2
         // 
-        progressBar2.BackColor = Color.FromArgb(255, 192, 128);
-        progressBar2.ForeColor = Color.FromArgb(255, 192, 128);
+        progressBar2.BackColor = Color.FromArgb(240, 240, 240);
+        progressBar2.ForeColor = Color.Gray;
         progressBar2.Location = new Point(746, 112);
         progressBar2.Margin = new Padding(2);
         progressBar2.Name = "progressBar2";
@@ -199,8 +201,8 @@ partial class Form1
         // 
         // progressBar3
         // 
-        progressBar3.BackColor = Color.FromArgb(128, 255, 128);
-        progressBar3.ForeColor = Color.FromArgb(128, 255, 128);
+        progressBar3.BackColor = Color.FromArgb(240, 240, 240);
+        progressBar3.ForeColor = Color.Gray;
         progressBar3.Location = new Point(746, 149);
         progressBar3.Margin = new Padding(2);
         progressBar3.Name = "progressBar3";
@@ -282,6 +284,32 @@ partial class Form1
         button2.MouseLeave += button_MouseLeave;
         button2.MouseMove += button_MouseMove;
         // 
+        // label5
+        // 
+        label5.AutoSize = true;
+        label5.BackColor = Color.FromArgb(64, 64, 64);
+        label5.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+        label5.ForeColor = Color.FromArgb(0, 192, 192);
+        label5.Location = new Point(12, 95);
+        label5.Name = "label5";
+        label5.Size = new Size(130, 30);
+        label5.TabIndex = 16;
+        label5.Text = "🎯 СЧЁТ: 0 ";
+        label5.Visible = false;
+        // 
+        // label6
+        // 
+        label6.AutoSize = true;
+        label6.BackColor = Color.FromArgb(64, 64, 64);
+        label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+        label6.ForeColor = Color.FromArgb(192, 192, 0);
+        label6.Location = new Point(12, 139);
+        label6.Name = "label6";
+        label6.Size = new Size(160, 30);
+        label6.TabIndex = 17;
+        label6.Text = "👑 РЕКОРД: 0 ";
+        label6.Visible = false;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -289,6 +317,8 @@ partial class Form1
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
         BackColor = Color.Black;
         ClientSize = new Size(914, 561);
+        Controls.Add(label5);
+        Controls.Add(label6);
         Controls.Add(button2);
         Controls.Add(button1);
         Controls.Add(exit_button);
@@ -315,11 +345,8 @@ partial class Form1
     }
 
     private System.Windows.Forms.Timer timer1;
-
     private Space_Invaders.Player player;
-
     private Space_Invaders.Player player1;
-
     private System.Windows.Forms.Button start_button;
 
     #endregion
@@ -330,12 +357,14 @@ partial class Form1
     private Button continue_button;
     private Button exit_button;
     private Label label1;
-    private ProgressBar progressBar1;
-    private ProgressBar progressBar2;
-    private ProgressBar progressBar3;
+    private CustomProgressBar progressBar1;
+    private CustomProgressBar progressBar2;
+    private CustomProgressBar progressBar3;
     private Label label2;
     private Label label3;
     private Label label4;
     private Button button1;
     private Button button2;
+    private Label label5;
+    private Label label6;
 }

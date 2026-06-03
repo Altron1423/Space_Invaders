@@ -1,10 +1,11 @@
 namespace Space_Invaders;
+using System.Diagnostics;
 
 public enum EnemyMove { Normal, Left, Right }
 
 public abstract partial class Entity : UserControl
 {
-    protected int _health = 1;
+    protected int _health = 2;
     protected int _speed;
     protected int _moveOrientation;
     protected Brush _brush;
@@ -12,6 +13,8 @@ public abstract partial class Entity : UserControl
     protected int _right_border = 0;
     protected bool _shoot = false;
     protected EnemyMove _movePosition = EnemyMove.Normal;
+    protected readonly Stopwatch _cooldownTimer = new ();
+    protected TimeSpan _cooldownDuration;
     
     public Entity()
     {

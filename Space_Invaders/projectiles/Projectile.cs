@@ -83,7 +83,7 @@ public abstract partial class Projectile : UserControl
 
     protected bool IsOutOfBounds()
     {
-        return Top <= 0;
+        return Top <= 0 || Top >= 650;
     }
     
     protected abstract void IntersectsWith(Entity entity);

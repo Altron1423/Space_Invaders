@@ -14,6 +14,7 @@ public partial class Form1 : BaseForm
     private List<Bullet> _bullets;
     private int _score = 0;
     private int _dificlty;
+    private int _start_dificalty;
     private int _level = 1;
 
     private int _tick = 0;
@@ -40,6 +41,32 @@ public partial class Form1 : BaseForm
     public Form1(int dificlty): this()
     {
         _dificlty = dificlty;
+        _start_dificalty = _dificlty;
+        setDificaltyLabel();
+    }
+
+    private void setDificaltyLabel()
+    {
+        if (_dificlty == 1)
+        {
+            labelDificalty.Text = "СЛОЖНОТЬ: ЛЕГКО";
+            labelDificalty.ForeColor = Color.FromArgb(255, 0, 255, 0);
+        } else if (_dificlty == 2)
+        {
+            labelDificalty.Text = "СЛОЖНОТЬ: СРЕДНЕ";
+            labelDificalty.ForeColor = Color.FromArgb(255, 255, 255, 0);
+        } else if (_dificlty == 3)
+        {
+            labelDificalty.Text = "СЛОЖНОТЬ: СЛОЖНО";
+            labelDificalty.ForeColor = Color.FromArgb(255, 255, 0, 0);
+        } else if (_dificlty >= 4)
+        {
+            if (_dificlty > 4)
+                labelDificalty.Text = $"СЛОЖНОТЬ: КОШМАР {_dificlty-3}";
+            else
+                labelDificalty.Text = "СЛОЖНОТЬ: КОШМАР";
+            labelDificalty.ForeColor = Color.FromArgb(255, 0, 0, 0);
+        }
     }
     
     private void Form1_Load(object sender, EventArgs e)
@@ -83,6 +110,8 @@ public partial class Form1 : BaseForm
         label4.Visible = true;
         label5.Visible = true;
         label6.Visible = true;
+        labelLevel.Visible = true;
+        labelDificalty.Visible = true;
         progressBar1.Visible = true;
         progressBar2.Visible = true;
         progressBar3.Visible = true;
@@ -99,12 +128,12 @@ public partial class Form1 : BaseForm
 
     private void SummonStartEnemy()
     {
-        int count = 10 + (int)(4 * _level * (0.5 + 0.2 * _dificlty));
-        
+        int count = 15 + (int)(7 * _level * (0.5 + 0.3 * _dificlty));
+        int fixLine = count / _lineCount * 50;
         for (int i = 0; i < count; i++)
         {
             int x = 275 + i % _lineCount * 70 + i / _lineCount % 2 * 35;
-            int y =  40 + i / _lineCount * 50;
+            int y =  60 + i / _lineCount * 50 - fixLine;
             summon_enemy(x, y);
         }
     }
@@ -307,7 +336,20 @@ public partial class Form1 : BaseForm
         RemoveEnemy(enemies);
         if (_enemies.Count == 0)
         {
+            if (_level == 5)
+            {
+                _level = 1;
+                if (_dificlty != 3){}
+                else if (_start_dificalty != 1)
+                {
+                    GameOver();
+                    return;
+                }
+                _dificlty++;
+                setDificaltyLabel();
+            }
             _level++;
+            labelLevel.Text = $"УРОВЕНЬ: {_level}";
             SummonStartEnemy();
             foreach (Bullet bullet in _bullets)
             {

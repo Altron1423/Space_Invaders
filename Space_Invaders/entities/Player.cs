@@ -10,8 +10,6 @@ public partial class Player : Entity
     private int _max_helth;
     
     private bool _keyAPress, _keyDPress;
-    private readonly Stopwatch _cooldownTimer = new ();
-    private TimeSpan _cooldownDuration;
     
     private Form1 _parentForm;
 
@@ -70,7 +68,7 @@ public partial class Player : Entity
         _moveOrientation = 0;
         _keyAPress = false;
         _keyDPress = false;
-        _cooldownDuration = TimeSpan.FromSeconds(0.5);
+        _cooldownDuration = TimeSpan.FromSeconds(0.35);
         _cooldownTimer.Start();
         _brush = Brushes.Green;
         this.DoubleBuffered = true; // Включаем двойную буферизацию

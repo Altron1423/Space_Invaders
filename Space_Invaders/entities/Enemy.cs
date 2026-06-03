@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Diagnostics;
 
 namespace Space_Invaders;
 
@@ -9,14 +8,13 @@ public partial class Enemy : Entity
 {
     public EnemyType _type;
     public int points = 1;
-    public double _shootChance = 15;
+    public int _shootChance = 35;
     private bool shoot = false;
     private Random _shotRanom = new Random();
-    private readonly Stopwatch _cooldownTimer = new ();
-    private TimeSpan _cooldownDuration;
 
     public Enemy(EnemyType type)
     {
+        _cooldownDuration = TimeSpan.FromSeconds(1);
         _speed = (new Random()).Next(5, 8);
         _moveOrientation = 1;
         
@@ -25,14 +23,17 @@ public partial class Enemy : Entity
         if (_type == EnemyType.Armored)
         {
             _health = 3;
+            _speed = (int)(_speed * 0.7);
+            _brush = Brushes.DarkRed;
         }
         else if (_type == EnemyType.Fast)
         {
+            _health = 1;
             _speed *= 2;
+            _brush = Brushes.DarkBlue;
         }
         InitializeComponent();
         _cooldownTimer.Start();
-        _cooldownDuration = TimeSpan.FromSeconds(0.5);
     }
 
     public override void Update()

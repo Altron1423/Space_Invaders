@@ -1,5 +1,3 @@
-using System.Drawing.Drawing2D;
-
 namespace Space_Invaders;
 
 public partial class Bullet : Projectile

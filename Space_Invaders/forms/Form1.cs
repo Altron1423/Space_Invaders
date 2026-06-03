@@ -229,7 +229,19 @@ public partial class Form1 : BaseForm
         _powerupSpawnTimer.Stop();
         timer1.Stop();
         _paused = true;
+
         MessageBox.Show("Игра окончена!", "Space Invaders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        Form2 form2 = new Form2();
+        form2.StartPosition = FormStartPosition.Manual;
+        form2.Location = new Point(
+            Location.X + (Width - form2.Width) / 2,
+            Location.Y + (Height - form2.Height) / 2
+        );
+
+        Hide();
+        form2.ShowDialog();
+        Close();
     }
 
     private void BringButtonsToFront()

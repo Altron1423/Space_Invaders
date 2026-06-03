@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Projects\\Space_Invaders\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\customprogressbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\customprogressbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\forms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\forms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|d:\\projects\\space_invaders\\space_invaders\\customprogressbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|solutionrelative:space_invaders\\customprogressbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55B0A26A-CDC9-4704-8E84-763C7B631254}|Space_Invaders\\Space_Invaders.csproj|D:\\Projects\\Space_Invaders\\space_invaders\\forms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -82,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,12 +98,11 @@
               "RelativeToolTip": "Space_Invaders\\forms\\Form1.Designer.cs",
               "ViewState": "AgIAAA8BAAAAAAAAAAAAAEEBAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-02T18:18:47.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T18:18:47.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CustomProgressBar.cs",
               "DocumentMoniker": "D:\\Projects\\Space_Invaders\\Space_Invaders\\CustomProgressBar.cs",
               "RelativeDocumentMoniker": "Space_Invaders\\CustomProgressBar.cs",
@@ -116,13 +115,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form1.cs",
               "RelativeDocumentMoniker": "Space_Invaders\\forms\\Form1.cs",
               "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form1.cs",
               "RelativeToolTip": "Space_Invaders\\forms\\Form1.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAA2wFAAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAwwPMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-14T11:59:50.158Z",
               "EditorCaption": ""
@@ -136,8 +135,7 @@
               "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form2.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Space_Invaders\\forms\\Form2.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T20:26:27.04Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-26T20:26:27.04Z"
             },
             {
               "$type": "Document",
@@ -148,8 +146,7 @@
               "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Space_Invaders\\forms\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-24T18:27:55.521Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-24T18:27:55.521Z"
             },
             {
               "$type": "Document",
@@ -160,8 +157,7 @@
               "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form3.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Space_Invaders\\forms\\Form3.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T15:25:33.156Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-27T15:25:33.156Z"
             },
             {
               "$type": "Document",
@@ -172,8 +168,7 @@
               "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form5.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Space_Invaders\\forms\\Form5.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T20:01:46.098Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-26T20:01:46.098Z"
             },
             {
               "$type": "Document",
@@ -184,8 +179,7 @@
               "ToolTip": "D:\\Projects\\Space_Invaders\\Space_Invaders\\forms\\Form6.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Space_Invaders\\forms\\Form6.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T12:26:02.323Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-27T12:26:02.323Z"
             },
             {
               "$type": "Document",
@@ -197,8 +191,7 @@
               "RelativeToolTip": "Space_Invaders\\forms\\Form2.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAowFMAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T14:44:31.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T14:44:31.864Z"
             },
             {
               "$type": "Document",
@@ -210,8 +203,7 @@
               "RelativeToolTip": "Space_Invaders\\forms\\Form3.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAA1wDUAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T17:42:37.197Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T17:42:37.197Z"
             },
             {
               "$type": "Document",
@@ -223,8 +215,7 @@
               "RelativeToolTip": "Space_Invaders\\forms\\Form5.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwD8AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T20:25:26.866Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T20:25:26.866Z"
             },
             {
               "$type": "Document",
@@ -236,8 +227,7 @@
               "RelativeToolTip": "Space_Invaders\\forms\\Form6.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAowFAAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T12:32:24.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T12:32:24.995Z"
             },
             {
               "$type": "Document",
@@ -249,8 +239,7 @@
               "RelativeToolTip": "Space_Invaders\\entities\\Player.cs",
               "ViewState": "AgIAABABAAAAAAAAAADwv1EBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-24T17:13:21.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-24T17:13:21.873Z"
             },
             {
               "$type": "Document",
@@ -262,8 +251,7 @@
               "RelativeToolTip": "Space_Invaders\\entities\\Enemy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-24T17:13:14.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-24T17:13:14.121Z"
             },
             {
               "$type": "Document",
@@ -275,8 +263,7 @@
               "RelativeToolTip": "Space_Invaders\\projectiles\\Projectile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T12:25:14.36Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T12:25:14.36Z"
             },
             {
               "$type": "Document",
@@ -288,8 +275,7 @@
               "RelativeToolTip": "Space_Invaders\\projectiles\\Powerup.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T12:25:02.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T12:25:02.863Z"
             },
             {
               "$type": "Document",
@@ -301,8 +287,7 @@
               "RelativeToolTip": "Space_Invaders\\projectiles\\Bullet.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T12:00:37.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T12:00:37.449Z"
             },
             {
               "$type": "Document",
@@ -314,8 +299,7 @@
               "RelativeToolTip": "Space_Invaders\\entities\\Entity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-24T17:13:18.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-24T17:13:18.459Z"
             }
           ]
         }

@@ -4,8 +4,9 @@ using System.Drawing.Text;
 
 namespace Space_Invaders;
 
-public partial class Form1 : Form
+public partial class Form1 : BaseForm
 {
+    private readonly int _dificlty;
     private bool _paused = true;
     private List<Entity> _enemies;
     private List<Powerup> _powerups;
@@ -31,6 +32,11 @@ public partial class Form1 : Form
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
     }
 
+    public Form1(int dificlty): this()
+    {
+        _dificlty = dificlty;
+    }
+    
     private void Form1_Load(object sender, EventArgs e)
     {
         player.SetParentForm(this);
@@ -295,6 +301,7 @@ public partial class Form1 : Form
     //        //        \\
     //       || buttons ||
     //       \\        //
+    
     private void player_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Escape)
@@ -325,7 +332,7 @@ public partial class Form1 : Form
         }
     }
 
-    private void button_MouseMove(object sender, MouseEventArgs e)
+    protected override void button_MouseMove(object sender, MouseEventArgs e)
     {
         Button bt = sender as Button;
         if (!(bt == pause_button && _paused))
@@ -335,7 +342,7 @@ public partial class Form1 : Form
         bt.ForeColor = Color.Black;
     }
 
-    private void button_MouseLeave(object sender, EventArgs e)
+    protected override void button_MouseLeave(object sender, EventArgs e)
     {
         Button bt = sender as Button;
         if (!(bt == pause_button && _paused))

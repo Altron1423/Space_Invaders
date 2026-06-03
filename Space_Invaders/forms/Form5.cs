@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Space_Invaders.forms
 {
-    public partial class Form5 : Form
+    public partial class Form5 : BaseForm
     {
         private Form _parentForm;
 
@@ -29,6 +29,10 @@ namespace Space_Invaders.forms
                 this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
                 this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
             }
+            _moveBackColor = Color.Firebrick;
+            _moveForeColor = Color.FromArgb(255, 64, 64, 64);
+            _leaveBackColor = Color.Maroon;
+            _leaveForeColor = Color.White;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,18 +54,5 @@ namespace Space_Invaders.forms
             //Close();
         }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
-        {
-            Button bt = sender as Button;
-            bt.BackColor = Color.Maroon;
-            bt.ForeColor = Color.White;
-        }
-
-        private void button1_MouseMove(object sender, MouseEventArgs e)
-        {
-            Button bt = sender as Button;
-            bt.BackColor = Color.Firebrick;
-            bt.ForeColor = Color.FromArgb(255, 64, 64, 64);
-        }
     }
 }

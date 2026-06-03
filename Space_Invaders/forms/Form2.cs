@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Space_Invaders
 {
-    public partial class Form2 : Form
+    public partial class Form2 : BaseForm
     {
         public Form2()
         {
@@ -29,6 +29,10 @@ namespace Space_Invaders
                 this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
                 this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
             }
+            _moveBackColor = Color.Firebrick;
+            _moveForeColor = Color.FromArgb(255, 64, 64, 64);
+            _leaveBackColor = Color.Maroon;
+            _leaveForeColor = Color.White;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -77,19 +81,6 @@ namespace Space_Invaders
             bt.ForeColor = Color.White;
         }
 
-        private void button2_MouseMove(object sender, MouseEventArgs e)
-        {
-            Button bt = sender as Button;
-            bt.BackColor = Color.Firebrick;
-            bt.ForeColor = Color.FromArgb(255, 64, 64, 64); 
-        }
-
-        private void button2_MouseLeave(object sender, EventArgs e)
-        {
-            Button bt = sender as Button;
-            bt.BackColor = Color.Maroon;
-            bt.ForeColor = Color.White;
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -103,15 +94,6 @@ namespace Space_Invaders
             form3.ShowDialog(); // Открываем Form3 в модальном режиме
                                 // Close() убран — Form2 не закрывается
             Show(); // Показываем Form2 снова после закрытия Form3
-            //Form3 form3 = new Form3();
-            //form3.StartPosition = FormStartPosition.Manual;
-            //form3.Location = new Point(
-            //    Location.X + (Width - form3.Width) / 2,
-            //    Location.Y + (Height - form3.Height) / 2
-            //);
-            //Hide();
-            //form3.ShowDialog();
-            //Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -126,15 +108,6 @@ namespace Space_Invaders
             form5.ShowDialog(); // Открываем Form5 в модальном режиме
                                 // Close() убран — Form2 не закрывается
             Show(); // Показываем Form2 снова после закрытия Form5
-            //Form5 form5 = new Form5();
-            //form5.StartPosition = FormStartPosition.Manual;
-            //form5.Location = new Point(
-            //    Location.X + (Width - form5.Width) / 2,
-            //    Location.Y + (Height - form5.Height) / 2
-            //);
-            //Hide();
-            //form5.ShowDialog();
-            //Close();
         }
     }
 }

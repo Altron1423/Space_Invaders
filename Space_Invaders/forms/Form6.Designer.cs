@@ -178,8 +178,8 @@
             button4.Text = "← Назад";
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
-            button4.MouseLeave += button4_MouseLeave;
-            button4.MouseMove += button4_MouseMove;
+            button4.MouseLeave += button_MouseLeave;
+            button4.MouseMove += button_MouseMove;
             // 
             // pictureBox1
             // 

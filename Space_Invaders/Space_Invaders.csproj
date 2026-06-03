@@ -31,6 +31,9 @@
       <Compile Update="projectiles\Powerup.cs">
         <SubType>UserControl</SubType>
       </Compile>
+      <Compile Update="forms\BaseForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

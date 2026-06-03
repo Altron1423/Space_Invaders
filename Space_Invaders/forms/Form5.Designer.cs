@@ -254,8 +254,8 @@
             button1.Text = "← Назад";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
-            button1.MouseLeave += button1_MouseLeave;
-            button1.MouseMove += button1_MouseMove;
+            button1.MouseLeave += button_MouseLeave;
+            button1.MouseMove += button_MouseMove;
             // 
             // Form5
             // 

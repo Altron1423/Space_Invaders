@@ -1,5 +1,6 @@
 using Space_Invaders.forms;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Text;
 using System.Runtime.InteropServices.Swift;
 using Timer = System.Timers.Timer;
@@ -38,7 +39,7 @@ public partial class Form1 : BaseForm
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
     }
 
-    public Form1(int dificlty): this()
+    public Form1(int dificlty) : this()
     {
         _dificlty = dificlty;
         _start_dificalty = _dificlty;
@@ -68,7 +69,7 @@ public partial class Form1 : BaseForm
             labelDificalty.ForeColor = Color.FromArgb(255, 0, 0, 0);
         }
     }
-    
+
     private void Form1_Load(object sender, EventArgs e)
     {
         player.SetParentForm(this);
@@ -110,8 +111,6 @@ public partial class Form1 : BaseForm
         label4.Visible = true;
         label5.Visible = true;
         label6.Visible = true;
-        labelLevel.Visible = true;
-        labelDificalty.Visible = true;
         progressBar1.Visible = true;
         progressBar2.Visible = true;
         progressBar3.Visible = true;
@@ -173,7 +172,7 @@ public partial class Form1 : BaseForm
         {
             progressBar1.Maximum = 100;
             progressBar1.Value = 0;
-            progressBar1.BackColor = Color.FromArgb(255, 64, 64, 64); 
+            progressBar1.BackColor = Color.FromArgb(255, 64, 64, 64);
         }
 
         if (progressBar2 != null)
@@ -252,24 +251,22 @@ public partial class Form1 : BaseForm
             progressBar3.Invalidate();
         }
     }
-    
+
     public void GameOver()
     {
         _powerupSpawnTimer.Stop();
         timer1.Stop();
         _paused = true;
 
-        MessageBox.Show("Игра окончена!", "Space Invaders", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        Form2 form2 = new Form2();
-        form2.StartPosition = FormStartPosition.Manual;
-        form2.Location = new Point(
-            Location.X + (Width - form2.Width) / 2,
-            Location.Y + (Height - form2.Height) / 2
+        Form4 form4 = new Form4();
+        form4.StartPosition = FormStartPosition.Manual;
+        form4.Location = new Point(
+            Location.X + (Width - form4.Width) / 2,
+            Location.Y + (Height - form4.Height) / 2
         );
 
         Hide();
-        form2.ShowDialog();
+        form4.ShowDialog();
         Close();
     }
 
@@ -366,6 +363,7 @@ public partial class Form1 : BaseForm
         }
 
 
+
         foreach (Powerup powerup in _powerups)
         {
             powerup.Update();
@@ -398,7 +396,7 @@ public partial class Form1 : BaseForm
     //        //        \\
     //       || buttons ||
     //       \\        //
-    
+
     private void player_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Escape)
@@ -510,7 +508,7 @@ public partial class Form1 : BaseForm
     {
         Button bt = sender as Button;
         bt.BackColor = Color.Firebrick;
-        bt.ForeColor = Color.FromArgb(255, 64, 64, 64); 
+        bt.ForeColor = Color.FromArgb(255, 64, 64, 64);
     }
 
     private void button2_Click(object sender, EventArgs e)

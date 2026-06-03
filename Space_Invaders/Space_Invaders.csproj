@@ -19,9 +19,7 @@
       <Compile Update="entities\Entity.cs">
         <SubType>UserControl</SubType>
       </Compile>
-      <Compile Update="entities\Player.cs">
-        <SubType>UserControl</SubType>
-      </Compile>
+      <Compile Update="entities\Player.cs" />
       <Compile Update="projectiles\Projectile.cs">
         <SubType>UserControl</SubType>
       </Compile>

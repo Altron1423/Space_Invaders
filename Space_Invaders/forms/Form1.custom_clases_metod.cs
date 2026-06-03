@@ -70,9 +70,11 @@ public partial class Form1
                 Bullet bullet = new Bullet(true, damage, speed, bulletX, bulletY);
                 AddBullet(bullet);
             }
-            else if (shot == PlayerShotEnum.TwoShot) {
-                int bulletX1 = player.Left + player.Width / 2 - 12;
-                int bulletX2 = player.Left + player.Width / 2 + 8;
+            else if (shot == PlayerShotEnum.TwoShot)
+            {
+                int offset = 20;  
+                int bulletX1 = player.Left + player.Width / 2 - offset;
+                int bulletX2 = player.Left + player.Width / 2 + offset;
                 int bulletY = player.Top - 10;
 
                 Bullet bullet1 = new Bullet(true, damage, speed, bulletX1, bulletY);

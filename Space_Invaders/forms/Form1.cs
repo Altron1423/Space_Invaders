@@ -8,12 +8,13 @@ namespace Space_Invaders;
 
 public partial class Form1 : BaseForm
 {
-    private int _dificlty;
     private bool _paused = true;
     private List<Entity> _enemies;
     private List<Powerup> _powerups;
     private List<Bullet> _bullets;
     private int _score = 0;
+    private int _dificlty;
+    private int _level = 1;
 
     private int _tick = 0;
     private System.Windows.Forms.Timer _powerupSpawnTimer;
@@ -98,7 +99,7 @@ public partial class Form1 : BaseForm
 
     private void SummonStartEnemy()
     {
-        int count = 10 + 4 * _dificlty;
+        int count = 10 + (int)(4 * _level * (0.5 + 0.2 * _dificlty));
         
         for (int i = 0; i < count; i++)
         {
@@ -290,8 +291,10 @@ public partial class Form1 : BaseForm
         RemoveEnemy(enemies);
         if (_enemies.Count == 0)
         {
-            _dificlty++;
+            _level++;
             SummonStartEnemy();
+            _bullets.Clear();
+            _powerups.Clear();
         }
 
 

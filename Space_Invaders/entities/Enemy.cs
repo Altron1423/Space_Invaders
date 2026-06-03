@@ -46,11 +46,4 @@ public partial class Enemy : Entity
     }
 
     public override void Die() {}
-
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public EnemyType Type
-    {
-        get => _type;
-        set => _type = value;
-    }
 }

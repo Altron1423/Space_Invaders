@@ -12,8 +12,11 @@ namespace Space_Invaders.forms
 {
     public partial class Form4 : Form
     {
-        public Form4()
+        private int _start_dificalty;
+        
+        public Form4(int start_dificalty)
         {
+            _start_dificalty = start_dificalty;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -30,7 +33,7 @@ namespace Space_Invaders.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1(_start_dificalty);
             form1.StartPosition = FormStartPosition.Manual;
             form1.Location = new Point(
                 Location.X + (Width - form1.Width) / 2,

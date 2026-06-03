@@ -111,6 +111,8 @@ public partial class Form1 : BaseForm
         label4.Visible = true;
         label5.Visible = true;
         label6.Visible = true;
+        labelLevel.Visible = true;
+        labelDificalty.Visible = true;
         progressBar1.Visible = true;
         progressBar2.Visible = true;
         progressBar3.Visible = true;
@@ -258,7 +260,7 @@ public partial class Form1 : BaseForm
         timer1.Stop();
         _paused = true;
 
-        Form4 form4 = new Form4();
+        Form4 form4 = new Form4(_start_dificalty);
         form4.StartPosition = FormStartPosition.Manual;
         form4.Location = new Point(
             Location.X + (Width - form4.Width) / 2,
@@ -548,19 +550,15 @@ public partial class Form1 : BaseForm
 
     private void ButtonExit(object sender, EventArgs e)
     {
-        var otvet = MessageBox.Show("Вы уверены, что хотите завершить?", "Space Invaders", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        if (otvet == DialogResult.Yes)
-        {
-            Form2 form2 = new Form2();
-            form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(
-                Location.X + (Width - form2.Width) / 2,
-                Location.Y + (Height - form2.Height) / 2
-            );
-            Hide();
-            form2.ShowDialog();
-            Close();
-        }
+        Form2 form2 = new Form2();
+        form2.StartPosition = FormStartPosition.Manual;
+        form2.Location = new Point(
+            Location.X + (Width - form2.Width) / 2,
+            Location.Y + (Height - form2.Height) / 2
+        );
+        Hide();
+        form2.ShowDialog();
+        Close();
     }
 
     public bool IsPaused => _paused;

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Space_Invaders.forms.Form3));
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -47,9 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, ((System.Drawing.FontStyle)(System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic)), System.Drawing.GraphicsUnit.Point, ((byte)204));
             label1.ForeColor = System.Drawing.Color.White;
@@ -58,9 +55,6 @@
             label1.Size = new System.Drawing.Size(240, 42);
             label1.TabIndex = 0;
             label1.Text = "Управление";
-            // 
-            // label2
-            // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
             label2.ForeColor = System.Drawing.Color.White;
@@ -69,9 +63,6 @@
             label2.Size = new System.Drawing.Size(62, 42);
             label2.TabIndex = 1;
             label2.Text = "🎮";
-            // 
-            // label3
-            // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, ((System.Drawing.FontStyle)(System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic)), System.Drawing.GraphicsUnit.Point, ((byte)204));
             label3.ForeColor = System.Drawing.Color.White;
@@ -80,9 +71,6 @@
             label3.Size = new System.Drawing.Size(235, 42);
             label3.TabIndex = 2;
             label3.Text = "Клавиатура";
-            // 
-            // label4
-            // 
             label4.AutoSize = true;
             label4.BackColor = System.Drawing.Color.FromArgb(((int)((byte)0)), ((int)((byte)64)), ((int)((byte)0)));
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -92,9 +80,6 @@
             label4.Size = new System.Drawing.Size(301, 29);
             label4.TabIndex = 3;
             label4.Text = "[A] - движение влево (←)";
-            // 
-            // label5
-            // 
             label5.AutoSize = true;
             label5.BackColor = System.Drawing.Color.FromArgb(((int)((byte)64)), ((int)((byte)64)), ((int)((byte)0)));
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -104,9 +89,6 @@
             label5.Size = new System.Drawing.Size(316, 29);
             label5.TabIndex = 4;
             label5.Text = "[D] - движение вправо (→)";
-            // 
-            // label6
-            // 
             label6.AutoSize = true;
             label6.BackColor = System.Drawing.Color.FromArgb(((int)((byte)0)), ((int)((byte)0)), ((int)((byte)64)));
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -116,9 +98,6 @@
             label6.Size = new System.Drawing.Size(258, 29);
             label6.TabIndex = 5;
             label6.Text = "[Space] - стрельба (_)";
-            // 
-            // label7
-            // 
             label7.AutoSize = true;
             label7.BackColor = System.Drawing.Color.FromArgb(((int)((byte)64)), ((int)((byte)0)), ((int)((byte)0)));
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -128,9 +107,6 @@
             label7.Size = new System.Drawing.Size(186, 29);
             label7.TabIndex = 6;
             label7.Text = "[Esc] - пауза (||)";
-            // 
-            // label8
-            // 
             label8.AutoSize = true;
             label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, ((System.Drawing.FontStyle)(System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic)), System.Drawing.GraphicsUnit.Point, ((byte)204));
             label8.ForeColor = System.Drawing.Color.White;
@@ -139,9 +115,6 @@
             label8.Size = new System.Drawing.Size(155, 42);
             label8.TabIndex = 7;
             label8.Text = "Бонусы";
-            // 
-            // label9
-            // 
             label9.AutoSize = true;
             label9.BackColor = System.Drawing.Color.FromArgb(((int)((byte)0)), ((int)((byte)0)), ((int)((byte)64)));
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -151,9 +124,6 @@
             label9.Size = new System.Drawing.Size(194, 29);
             label9.TabIndex = 8;
             label9.Text = "[⚡] - ускорение";
-            // 
-            // label10
-            // 
             label10.AutoSize = true;
             label10.BackColor = System.Drawing.Color.FromArgb(((int)((byte)128)), ((int)((byte)64)), ((int)((byte)64)));
             label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -163,9 +133,6 @@
             label10.Size = new System.Drawing.Size(320, 29);
             label10.TabIndex = 9;
             label10.Text = "[✧] - увеличение стрельбы";
-            // 
-            // label11
-            // 
             label11.AutoSize = true;
             label11.BackColor = System.Drawing.Color.FromArgb(((int)((byte)0)), ((int)((byte)64)), ((int)((byte)0)));
             label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -175,9 +142,6 @@
             label11.Size = new System.Drawing.Size(120, 29);
             label11.TabIndex = 10;
             label11.Text = "[🛡️] - щит";
-            // 
-            // label12
-            // 
             label12.AutoSize = true;
             label12.BackColor = System.Drawing.Color.FromArgb(((int)((byte)64)), ((int)((byte)0)), ((int)((byte)0)));
             label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
@@ -187,9 +151,6 @@
             label12.Size = new System.Drawing.Size(182, 29);
             label12.TabIndex = 11;
             label12.Text = "[❤️] - здоровье";
-            // 
-            // pictureBox1
-            // 
             pictureBox1.Image = ((System.Drawing.Image)resources.GetObject("pictureBox1.Image"));
             pictureBox1.Location = new System.Drawing.Point(419, 117);
             pictureBox1.Name = "pictureBox1";
@@ -197,9 +158,6 @@
             pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
             pictureBox2.Image = ((System.Drawing.Image)resources.GetObject("pictureBox2.Image"));
             pictureBox2.Location = new System.Drawing.Point(-2, -3);
             pictureBox2.Name = "pictureBox2";
@@ -207,9 +165,6 @@
             pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 13;
             pictureBox2.TabStop = false;
-            // 
-            // button1
-            // 
             button1.BackColor = System.Drawing.Color.Maroon;
             button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)204));
             button1.ForeColor = System.Drawing.Color.White;
@@ -222,9 +177,6 @@
             button1.Click += button1_Click;
             button1.MouseLeave += button_MouseLeave;
             button1.MouseMove += button_MouseMove;
-            // 
-            // Form3
-            // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;

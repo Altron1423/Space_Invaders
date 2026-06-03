@@ -33,7 +33,6 @@ partial class Entity
     {
         components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        Init();
     }
 
     #endregion

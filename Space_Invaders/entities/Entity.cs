@@ -1,5 +1,7 @@
 namespace Space_Invaders;
 
+public enum EnemyMove { Normal, Left, Right }
+
 public abstract partial class Entity : UserControl
 {
     protected int _health = 1;
@@ -9,6 +11,7 @@ public abstract partial class Entity : UserControl
     protected int _left_border = 0;
     protected int _right_border = 0;
     protected bool _shoot = false;
+    protected EnemyMove _movePosition = EnemyMove.Normal;
     
     public Entity()
     {
@@ -30,7 +33,7 @@ public abstract partial class Entity : UserControl
         graphics.FillRectangle(_brush, 0, 0, Width - 1, Height - 1);
     }
 
-    public void Update()
+    public virtual void Update()
     {
         // if (_health <= 0)
         // {
@@ -45,16 +48,30 @@ public abstract partial class Entity : UserControl
         if (_moveOrientation == -1)
         {
             if (Left > _left_border + _speed)
+            {
                 Left -= _speed;
+                _movePosition = EnemyMove.Normal;
+            }
             else
+            {
                 Left = _left_border;
+                _movePosition = EnemyMove.Left;
+            }
+                
         }
         else if (_moveOrientation == 1)
         {
             if (Left + Width < _right_border - _speed)
+            {
                 Left += _speed;
-            else 
+                _movePosition = EnemyMove.Normal;
+            }
+            else
+            {
                 Left = _right_border - Width;
+                _movePosition = EnemyMove.Right;
+            }
+                
         }
     }
     
@@ -62,6 +79,7 @@ public abstract partial class Entity : UserControl
     public virtual void TakeDamage(int amount)
     {
         _health -= amount;
+        // Console.WriteLine($"{Width}x{Height}: {amount} damage ({_health})");
         if (_health <= 0)
             Die();
     }

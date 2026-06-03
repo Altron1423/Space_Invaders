@@ -33,13 +33,12 @@ public partial class Player : Entity
     {
         InitializeComponent();
         InitializePowerupTimers();
+        Init();
     }
 
-    public Player(IContainer container)
+    public Player(IContainer container): this()
     {
         container.Add(this);
-        InitializeComponent();
-        InitializePowerupTimers();
     }
 
     private void InitializePowerupTimers()

@@ -1,20 +1,24 @@
 using Space_Invaders.forms;
 using System.ComponentModel;
 using System.Drawing.Text;
+using System.Runtime.InteropServices.Swift;
+using Timer = System.Timers.Timer;
 
 namespace Space_Invaders;
 
 public partial class Form1 : BaseForm
 {
-    private readonly int _dificlty;
+    private int _dificlty;
     private bool _paused = true;
     private List<Entity> _enemies;
     private List<Powerup> _powerups;
     private List<Bullet> _bullets;
+    private int _score = 0;
 
     private int _tick = 0;
     private System.Windows.Forms.Timer _powerupSpawnTimer;
     private Random _random = new Random();
+    private int _lineCount = 4;
 
     public Form1()
     {
@@ -58,7 +62,6 @@ public partial class Form1 : BaseForm
 
     private void RunGame(object sender, EventArgs e)
     {
-
         player.SetBorder(left_fon.Width, right_fon.Left);
         player.Location = new Point((left_fon.Width + right_fon.Left) / 2 - player.Width / 2,
                                      ClientSize.Height - 100);
@@ -89,6 +92,20 @@ public partial class Form1 : BaseForm
 
         timer1.Start();
         _powerupSpawnTimer.Start();
+
+        SummonStartEnemy();
+    }
+
+    private void SummonStartEnemy()
+    {
+        int count = 10 + 4 * _dificlty;
+        
+        for (int i = 0; i < count; i++)
+        {
+            int x = 275 + i % _lineCount * 70 + i / _lineCount % 2 * 35;
+            int y =  40 + i / _lineCount * 50;
+            summon_enemy(x, y);
+        }
     }
 
     private void SpawnRandomPowerup(object sender, EventArgs e)
@@ -258,12 +275,24 @@ public partial class Form1 : BaseForm
         foreach (Enemy enemy in _enemies)
         {
             enemy.Update();
-            if (enemy.Health == 0)
+            if (enemy.Health <= 0)
             {
                 enemies.Add(enemy);
+                _score += enemy.points;
+                label5.Text = $"🎯 СЧЁТ: {_score}";
+            }
+            else if (enemy.Top >= Height * 0.8)
+            {
+                enemies.Add(enemy);
+                player.TakeDamage(1);
             }
         }
         RemoveEnemy(enemies);
+        if (_enemies.Count == 0)
+        {
+            _dificlty++;
+            SummonStartEnemy();
+        }
 
 
         List<Powerup> powerups = new List<Powerup>();
@@ -290,7 +319,6 @@ public partial class Form1 : BaseForm
             {
                 bullets.Add(bullet);
             }
-            ;
         }
         RemoveBullet(bullets);
     }

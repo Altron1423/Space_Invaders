@@ -92,9 +92,31 @@ public partial class Form1
 
     private void summon_enemy(int x, int y)
     {
-        Enemy enemy = new Enemy();
+        int typeIndex = _random.Next(1,100);
+        EnemyType type;
+        if (typeIndex > 80)
+        {
+            type = EnemyType.Fast;
+        }
+        else if (typeIndex > 60)
+        {
+            type = EnemyType.Armored;
+        }
+        else
+        {
+            type = EnemyType.Normal;
+        }
+        
+        Console.WriteLine(type);
+        summon_enemy(x, y, type);
+    }
+
+    private void summon_enemy(int x, int y, EnemyType type)
+    {
+        Enemy enemy = new Enemy(type);
         enemy.Location = new Point(x, y);
         enemy.Size = new Size(40, 40);
+        enemy.SetBorder(left_fon.Width, right_fon.Left);
         
         AddEnemy(enemy);
     }

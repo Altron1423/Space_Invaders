@@ -51,19 +51,5 @@ namespace Space_Invaders.forms
             //form2.ShowDialog();
             //Close();
         }
-
-        // private void button1_MouseMove(object sender, MouseEventArgs e)
-        // {
-        //     Button bt = sender as Button;
-        //     bt.BackColor = 
-        //     bt.ForeColor = 
-        // }
-        //
-        // private void button1_MouseLeave(object sender, EventArgs e)
-        // {
-        //     Button bt = sender as Button;
-        //     bt.BackColor = Color.Maroon;
-        //     bt.ForeColor = Color.White;
-        // }
     }
 }

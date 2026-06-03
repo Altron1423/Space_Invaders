@@ -8,14 +8,14 @@ public abstract partial class Projectile : UserControl
     protected Brush _brush;
     protected bool _delete;
     
-    protected Form1 _parentForm;
+    protected GameForm _parentForm;
 
     public Projectile()
     {
         InitializeComponent();
     }
 
-    public void SetParentForm(Form1 form)
+    public void SetParentForm(GameForm form)
     {
         _parentForm = form;
     }

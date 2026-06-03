@@ -1,0 +1,290 @@
+@startuml
+!theme plain
+
+Enum EntityMove {
+  - Normal
+  - Left
+  - Right
+}
+
+abstract class Entity {
+  - protected int _health
+  - protected int _speed
+  - protected int _moveOrientation
+  - protected Brush _brush
+  - protected int _left_border
+  - protected int _right_border
+  - protected bool _shoot
+  - protected EntityMove _movePosition
+  - protected readonly Stopwatch _cooldownTimer
+  - protected TimeSpan _cooldownDuration
+}
+
+enum EnemyType {
+  - Normal
+  - Fast
+  - Armored
+}
+
+class Enemy {
+  - public EnemyType _type
+  - public int points
+  - public int _shootChance
+  - private bool shoot
+  - private Random _shotRanom
+  + public Enemy(EnemyType type)
+  + public override void Update()
+  + public override void Die()
+}
+
+class Player {
+  - const int FIRE_TYPE
+  - private int _max_helth
+  - private bool _keyAPress
+  - private bool _keyDPress
+  - private GameForm _parentForm
+  - private bool _hasShield
+  - private bool _doubleShotActive
+  - private bool _speedBoostActive
+  - private Timer _speedBoostTimer
+  - private Timer _doubleShotTimer
+  - private Timer _shieldTimer
+  - private int _originalSpeed
+  - private float _speedBoostRemaining
+  - private float _doubleShotRemaining
+  - private float _shieldRemaining
+  
+  + public Player()
+  + private void InitializePowerupTimers()
+  + public void SetParentForm(GameForm form)
+  + protected override void Init()
+  + protected override void OnPaint(PaintEventArgs e)
+  + public void PausePowerupTimers()
+  + public void ResumePowerupTimers()
+  + public void PlayerKeyUp(KeyEventArgs e)
+  + public void PlayerKeyDown(KeyEventArgs e)
+  + public override void TakeDamage(int amount)
+  + public override void Die()
+  
+  + public void ActivateSpeedBoost(float duration)
+  + private void UpdateSpeedBoost()
+  + private void DeactivateSpeedBoost()
+  + public void ActivateDoubleShot(float duration)
+  + private void UpdateDoubleShot()
+  + private void DeactivateDoubleShot()
+  + public void ActivateShield(float duration)
+  + private void UpdateShield()
+  + private void DeactivateShield()
+  + public void AddExtraLife()
+}
+
+abstract class Projectile {
+  - protected int _speed
+  - protected Brush _brush
+  - protected bool _delete
+  - protected GameForm _parentForm
+  
+  + public Projectile()
+  + public void SetParentForm(GameForm form)
+  + public void Update()
+  + public void TestInteractWith(List<Entity> entities)
+  + public void TestInteractWith(Entity entity)
+  + protected void Draw(object sender, PaintEventArgs e)
+  + private bool DotInRect(int x1, int y1, int x2, int y2, int px, int py)
+  + private bool CheckIntersectsWith(Entity entity)
+  + protected bool IsOutOfBounds()
+  + protected abstract void IntersectsWith(Entity entity)
+  + public bool Delete
+}
+
+enum PowerupType {
+  - SpeedUp
+  - DoubleShot
+  - Shield
+  - ExtraLife
+}
+
+class Powerup {
+  - private PowerupType _bonus;
+  - private float _duration;
+  - private Label _iconLabel;
+  
+  + public Powerup()
+  + protected Powerup(PowerupType bonus, int speed, int x, int y)
+  + private void SetPowerupAppearance()
+  + private float DurationBonus(PowerupType bonus)
+  + protected override void IntersectsWith(Entity player)
+  + private void Effect(Player player)
+}
+
+class Bullet {
+  - private bool _isPlayerShoot
+  - private int _damage
+  
+  + public Bullet(bool isPlayerShoot, int damage, int speed, int x, int y)
+  + protected override void IntersectsWith(Entity entity)
+}
+
+
+
+class BaseForm {
+  - protected Color _moveBackColor
+  - protected Color _moveForeColor
+  - protected Color _leaveBackColor
+  - protected Color _leaveForeColor
+  + protected virtual void button_MouseMove()
+  + protected virtual void button_MouseLeave()
+}
+
+class MainMenuForm {
+  + public MainMenuForm()
+  + private void button1_Click(object sender, EventArgs e)
+  + private void button2_Click(object sender, EventArgs e)
+  + private void button1_MouseMove(object sender, MouseEventArgs e)
+  + private void button1_MouseLeave(object sender, EventArgs e)
+  + private void button3_Click(object sender, EventArgs e)
+  + private void button4_Click(object sender, EventArgs e)
+}
+
+class ControleForm {
+  + public ControleForm()
+  + private void button1_Click(object sender, EventArgs e)
+}
+
+class InfoForm {
+  + public InfoForm()
+  + private void button1_Click(object sender, EventArgs e)
+}
+
+class DifficultForm {
+  + public GameOverForm()
+  + private void button1_Click(object sender, EventArgs e)
+  + private void button2_Click(object sender, EventArgs e)
+  + private void button1_MouseLeave(object sender, EventArgs e)
+  + private void button1_MouseMove(object sender, MouseEventArgs e)
+}
+
+class GameOverForm {
+  - private int _start_difficulty
+  + public GameOverForm()
+  + private void button1_Click(object sender, EventArgs e)
+  + private void button2_Click(object sender, EventArgs e)
+  + private void button1_MouseLeave(object sender, EventArgs e)
+  + private void button1_MouseMove(object sender, MouseEventArgs e)
+}
+
+class GameForm {
+  - private bool _paused
+  - private List<Entity> _enemies
+  - private List<Powerup> _powerups
+  - private List<Bullet> _bullets
+  - private int _score
+  - private int _dificlty
+  - private int _start_dificalty
+  - private int _level
+  - private int _tick
+  - private Timer _powerupSpawnTimer
+  - private Random _random
+  - private int _lineCount
+  
+  + public GameForm()
+  + public GameForm(int difficulty)
+  + private void setDifficultyLabel()
+  + private void Form1_Load(object sender, EventArgs e)
+  + private void RunGame(object sender, EventArgs e)
+  + private void SummonStartEnemy()
+  + private void SpawnRandomPowerup(object sender, EventArgs e)
+  + public void UpdateHealthDisplay(int health)
+  + private void ResetPowerupIndicators()
+  + public void UpdatePowerupIndicators()
+  + public void GameOver()
+  + private void BringButtonsToFront()
+  + private void SendPowerupsToBack()
+  + private void timer1_Tick(object sender, EventArgs e)
+  
+  + private void player_KeyDown(object sender, KeyEventArgs e)
+  + private void player_KeyUp(object sender, KeyEventArgs e)
+  + protected override void button_MouseMove(object sender, MouseEventArgs e)
+  + protected override void button_MouseLeave(object sender, EventArgs e)
+  + private void PauseClick(object sender, EventArgs e)
+  + private void button1_Click(object sender, EventArgs e)
+  + private void exit_button_MouseLeave(object sender, EventArgs e)
+  + private void exit_button_MouseMove(object sender, MouseEventArgs e)
+  + private void button2_Click(object sender, EventArgs e)
+  + private void ContinueClick(object sender, EventArgs e)
+  + private void ButtonExit(object sender, EventArgs e)
+}
+
+class GameForm {
+
+  + public void AddBullet(Bullet bullet)
+  + public void RemoveBullet(List<Bullet> bullets)
+  + public void AddPowerup(PowerupType randomBonus, int randomSpeed, int x, int y)
+  + public void RemovePowerup(List<Powerup> powerups)
+  + public void AddEnemy(Enemy enemy)
+  + public void RemoveEnemy(List<Enemy> enemies)
+  + private void Shoot(Entity entity)
+  + private void SpawnPowerupAtPosition(int x, int y)
+  + private void summon_enemy(int x, int y)
+  + private void summon_enemy(int x, int y, EnemyType type)
+}
+
+class Program {
+  + static void Main()
+}
+
+
+
+Entity --|> Player
+Entity --|> Enemy
+
+Projectile --|> Bullet
+Projectile --|> Powerup
+
+EntityMove ..0 Entity
+EnemyType ...0 Enemy
+PowerupType ...0 Powerup
+
+Player 0..0 GameForm
+Enemy ..0 GameForm
+Bullet ..0 GameForm
+Powerup ..0 GameForm
+
+Program .....> MainMenuForm
+
+BaseForm ----|> MainMenuForm
+BaseForm ---|> ControleForm
+BaseForm ---|> InfoForm
+BaseForm ---|> DifficultForm
+BaseForm ----|> GameForm
+BaseForm ----|> GameOverForm
+
+MainMenuForm <..> ControleForm
+MainMenuForm <..> InfoForm
+MainMenuForm <.> DifficultForm
+GameForm <.> InfoForm
+GameForm <.> ControleForm
+GameForm .> DifficultForm
+GameForm <.> GameOverForm
+GameForm .> MainMenuForm
+GameOverForm .> MainMenuForm
+
+
+
+abstract ExampleA {
+  - protected int x // поле
+  + public void f() // метод
+}
+class ExampleB {
+  
+}
+class ExampleC {
+  - private ExampleB b
+}
+
+ExampleA --|> ExampleB: "  Наследование"
+ExampleB .0 ExampleC: "  Использование типа"
+ExampleC .> ExampleB: "  Переход в фоме"
+
+
+@enduml

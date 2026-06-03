@@ -1,6 +1,6 @@
 ﻿namespace Space_Invaders
 {
-    partial class Form2
+    partial class MainMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -116,7 +116,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
-            Name = "Form2";
+            Name = "MainMenuForm";
             Text = "КОСМИЧЕСКИЕ ЗАХВАТЧИКИ";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

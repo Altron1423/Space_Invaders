@@ -1,7 +1,7 @@
 namespace Space_Invaders;
 using System.Diagnostics;
 
-public enum EnemyMove { Normal, Left, Right }
+public enum EntityMove { Normal, Left, Right }
 
 public abstract partial class Entity : UserControl
 {
@@ -12,7 +12,7 @@ public abstract partial class Entity : UserControl
     protected int _left_border = 0;
     protected int _right_border = 0;
     protected bool _shoot = false;
-    protected EnemyMove _movePosition = EnemyMove.Normal;
+    protected EntityMove _movePosition = EntityMove.Normal;
     protected readonly Stopwatch _cooldownTimer = new ();
     protected TimeSpan _cooldownDuration;
     
@@ -53,12 +53,12 @@ public abstract partial class Entity : UserControl
             if (Left > _left_border + _speed)
             {
                 Left -= _speed;
-                _movePosition = EnemyMove.Normal;
+                _movePosition = EntityMove.Normal;
             }
             else
             {
                 Left = _left_border;
-                _movePosition = EnemyMove.Left;
+                _movePosition = EntityMove.Left;
             }
                 
         }
@@ -67,12 +67,12 @@ public abstract partial class Entity : UserControl
             if (Left + Width < _right_border - _speed)
             {
                 Left += _speed;
-                _movePosition = EnemyMove.Normal;
+                _movePosition = EntityMove.Normal;
             }
             else
             {
                 Left = _right_border - Width;
-                _movePosition = EnemyMove.Right;
+                _movePosition = EntityMove.Right;
             }
                 
         }

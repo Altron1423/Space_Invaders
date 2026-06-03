@@ -1,6 +1,6 @@
 ﻿namespace Space_Invaders.forms
 {
-    partial class Form4
+    partial class GameOverForm
     {
         /// <summary>
         /// Required designer variable.
@@ -61,8 +61,8 @@
             button2.Text = "Нет";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
-            button2.MouseLeave += button2_MouseLeave;
-            button2.MouseMove += button2_MouseMove;
+            button2.MouseLeave += button_MouseLeave;
+            button2.MouseMove += button_MouseMove;
             // 
             // label1
             // 
@@ -96,7 +96,7 @@
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "Form4";
+            Name = "GameOverForm";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -39,9 +39,9 @@ public partial class Enemy : Entity
     public override void Update()
     {
         base.Update();
-        if (_movePosition != EnemyMove.Normal)
+        if (_movePosition != EntityMove.Normal)
         {
-            if (_movePosition == EnemyMove.Left)
+            if (_movePosition == EntityMove.Left)
             {
                 _moveOrientation = 1;
             } else 

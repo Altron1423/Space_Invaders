@@ -1,6 +1,6 @@
 ﻿namespace Space_Invaders.forms
 {
-    partial class Form5
+    partial class InfoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoForm));
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
@@ -281,7 +281,7 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
-            Name = "Form5";
+            Name = "InfoForm";
             Text = "📜 Об игре";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

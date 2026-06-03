@@ -1,6 +1,6 @@
 ﻿namespace Space_Invaders.forms
 {
-    partial class Form6
+    partial class DifficultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form6));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DifficultForm));
             label1 = new Label();
             button1 = new Button();
             button2 = new Button();
@@ -209,7 +209,7 @@
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
-            Name = "Form6";
+            Name = "DifficultForm";
             Text = "Выбор уровня";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

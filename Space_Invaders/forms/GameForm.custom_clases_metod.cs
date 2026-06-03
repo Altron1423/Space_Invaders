@@ -1,6 +1,6 @@
 namespace Space_Invaders;
 
-public partial class Form1
+public partial class GameForm
 {
 
     public void AddBullet(Bullet bullet)

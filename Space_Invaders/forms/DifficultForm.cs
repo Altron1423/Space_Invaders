@@ -10,20 +10,20 @@ using System.Windows.Forms;
 
 namespace Space_Invaders.forms
 {
-    public partial class Form6 : BaseForm
+    public partial class DifficultForm : BaseForm
     {
-        public Form6()
+        public DifficultForm()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
 
-            this.StartPosition = FormStartPosition.Manual;
+            StartPosition = FormStartPosition.Manual;
             if (Screen.PrimaryScreen != null)
             {
-                this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
-                this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
+                Left = (Screen.PrimaryScreen.WorkingArea.Width - Width) / 2;
+                Top = (Screen.PrimaryScreen.WorkingArea.Height - Height) / 2;
             }
             _moveBackColor = Color.Firebrick;
             _moveForeColor = Color.FromArgb(255, 64, 64, 64);
@@ -48,27 +48,27 @@ namespace Space_Invaders.forms
         private void button1_Click(object sender, EventArgs e)
         {
             int dificlty = (sender as Button).Text.Length / 2;
-            Form1 form1 = new Form1(dificlty);
-            form1.StartPosition = FormStartPosition.Manual;
-            form1.Location = new Point(
-                Location.X + (Width - form1.Width) / 2,
-                Location.Y + (Height - form1.Height) / 2
+            GameForm gameForm = new GameForm(dificlty);
+            gameForm.StartPosition = FormStartPosition.Manual;
+            gameForm.Location = new Point(
+                Location.X + (Width - gameForm.Width) / 2,
+                Location.Y + (Height - gameForm.Height) / 2
             );
             Hide();
-            form1.ShowDialog();
+            gameForm.ShowDialog();
             Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(
-                Location.X + (Width - form2.Width) / 2,
-                Location.Y + (Height - form2.Height) / 2
+            MainMenuForm mainMenuForm = new MainMenuForm();
+            mainMenuForm.StartPosition = FormStartPosition.Manual;
+            mainMenuForm.Location = new Point(
+                Location.X + (Width - mainMenuForm.Width) / 2,
+                Location.Y + (Height - mainMenuForm.Height) / 2
             );
             Hide();
-            form2.ShowDialog();
+            mainMenuForm.ShowDialog();
             Close();
         }
 

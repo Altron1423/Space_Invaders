@@ -1,29 +1,19 @@
 ﻿using Space_Invaders.forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Space_Invaders
 {
-    public partial class Form2 : BaseForm
+    public partial class MainMenuForm : BaseForm
     {
-        public Form2()
+        public MainMenuForm()
         {
             InitializeComponent();
             //Фиксируем размер и внешний вид формы
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
 
             // Устанавливаем стартовую позицию (будет переопределено при открытии из Form1)
-            this.StartPosition = FormStartPosition.Manual;
+            StartPosition = FormStartPosition.Manual;
             if (Screen.PrimaryScreen != null)
             {
                 this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
@@ -49,14 +39,14 @@ namespace Space_Invaders
             //form1.ShowDialog();
             //this.Close();
 
-            Form6 form6 = new Form6();
-            form6.StartPosition = FormStartPosition.Manual;
-            form6.Location = new Point(
-                Location.X + (Width - form6.Width) / 2,
-                Location.Y + (Height - form6.Height) / 2
+            DifficultForm difficultForm = new DifficultForm();
+            difficultForm.StartPosition = FormStartPosition.Manual;
+            difficultForm.Location = new Point(
+                Location.X + (Width - difficultForm.Width) / 2,
+                Location.Y + (Height - difficultForm.Height) / 2
             );
             Hide();
-            form6.ShowDialog();
+            difficultForm.ShowDialog();
             Close();
         }
 
@@ -84,28 +74,28 @@ namespace Space_Invaders
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3(this); // Передаём ссылку на Form2
-            form3.StartPosition = FormStartPosition.Manual;
-            form3.Location = new Point(
-                Location.X + (Width - form3.Width) / 2,
-                Location.Y + (Height - form3.Height) / 2
+            ControleForm controleForm = new ControleForm(); // Передаём ссылку на Form2
+            controleForm.StartPosition = FormStartPosition.Manual;
+            controleForm.Location = new Point(
+                Location.X + (Width - controleForm.Width) / 2,
+                Location.Y + (Height - controleForm.Height) / 2
             );
             Hide(); // Скрываем Form2
-            form3.ShowDialog(); // Открываем Form3 в модальном режиме
+            controleForm.ShowDialog(); // Открываем Form3 в модальном режиме
                                 // Close() убран — Form2 не закрывается
             Show(); // Показываем Form2 снова после закрытия Form3
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5(this); // Передаём ссылку на Form2
-            form5.StartPosition = FormStartPosition.Manual;
-            form5.Location = new Point(
-                Location.X + (Width - form5.Width) / 2,
-                Location.Y + (Height - form5.Height) / 2
+            InfoForm infoForm = new InfoForm(); // Передаём ссылку на Form2
+            infoForm.StartPosition = FormStartPosition.Manual;
+            infoForm.Location = new Point(
+                Location.X + (Width - infoForm.Width) / 2,
+                Location.Y + (Height - infoForm.Height) / 2
             );
             Hide(); // Скрываем Form2
-            form5.ShowDialog(); // Открываем Form5 в модальном режиме
+            infoForm.ShowDialog(); // Открываем Form5 в модальном режиме
                                 // Close() убран — Form2 не закрывается
             Show(); // Показываем Form2 снова после закрытия Form5
         }

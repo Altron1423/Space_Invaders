@@ -1,29 +1,23 @@
 using Space_Invaders.forms;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing.Text;
-using System.Runtime.InteropServices.Swift;
-using Timer = System.Timers.Timer;
 
 namespace Space_Invaders;
 
-public partial class Form1 : BaseForm
+public partial class GameForm : BaseForm
 {
     private bool _paused = true;
     private List<Entity> _enemies;
     private List<Powerup> _powerups;
     private List<Bullet> _bullets;
     private int _score = 0;
-    private int _dificlty;
-    private int _start_dificalty;
+    private int _difficulty;
+    private int _startDifficulty;
     private int _level = 1;
 
-    private int _tick = 0;
     private System.Windows.Forms.Timer _powerupSpawnTimer;
     private Random _random = new Random();
     private int _lineCount = 4;
 
-    public Form1()
+    public GameForm()
     {
         InitializeComponent();
         FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -39,31 +33,31 @@ public partial class Form1 : BaseForm
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
     }
 
-    public Form1(int dificlty) : this()
+    public GameForm(int difficulty) : this()
     {
-        _dificlty = dificlty;
-        _start_dificalty = _dificlty;
-        setDificaltyLabel();
+        _difficulty = difficulty;
+        _startDifficulty = _difficulty;
+        SetDifficultyLabel();
     }
 
-    private void setDificaltyLabel()
+    private void SetDifficultyLabel()
     {
-        if (_dificlty == 1)
+        if (_difficulty == 1)
         {
             labelDificalty.Text = "СЛОЖНОТЬ: ЛЕГКО";
             labelDificalty.ForeColor = Color.FromArgb(255, 0, 255, 0);
-        } else if (_dificlty == 2)
+        } else if (_difficulty == 2)
         {
             labelDificalty.Text = "СЛОЖНОТЬ: СРЕДНЕ";
             labelDificalty.ForeColor = Color.FromArgb(255, 255, 255, 0);
-        } else if (_dificlty == 3)
+        } else if (_difficulty == 3)
         {
             labelDificalty.Text = "СЛОЖНОТЬ: СЛОЖНО";
             labelDificalty.ForeColor = Color.FromArgb(255, 255, 0, 0);
-        } else if (_dificlty >= 4)
+        } else if (_difficulty >= 4)
         {
-            if (_dificlty > 4)
-                labelDificalty.Text = $"СЛОЖНОТЬ: КОШМАР {_dificlty-3}";
+            if (_difficulty > 4)
+                labelDificalty.Text = $"СЛОЖНОТЬ: КОШМАР {_difficulty-3}";
             else
                 labelDificalty.Text = "СЛОЖНОТЬ: КОШМАР";
             labelDificalty.ForeColor = Color.FromArgb(255, 0, 0, 0);
@@ -82,11 +76,6 @@ public partial class Form1 : BaseForm
         _enemies = new List<Entity>();
         _powerups = new List<Powerup>();
         _bullets = new List<Bullet>();
-    }
-
-    private void log(object text)
-    {
-        Console.WriteLine($"{_tick}: {text}");
     }
 
     private void RunGame(object sender, EventArgs e)
@@ -129,7 +118,7 @@ public partial class Form1 : BaseForm
 
     private void SummonStartEnemy()
     {
-        int count = 15 + (int)(7 * _level * (0.5 + 0.3 * _dificlty));
+        int count = 15 + (int)(7 * _level * (0.5 + 0.3 * _difficulty));
         int fixLine = count / _lineCount * 50;
         for (int i = 0; i < count; i++)
         {
@@ -260,15 +249,15 @@ public partial class Form1 : BaseForm
         timer1.Stop();
         _paused = true;
 
-        Form4 form4 = new Form4(_start_dificalty);
-        form4.StartPosition = FormStartPosition.Manual;
-        form4.Location = new Point(
-            Location.X + (Width - form4.Width) / 2,
-            Location.Y + (Height - form4.Height) / 2
+        GameOverForm gameOverForm = new GameOverForm(_startDifficulty);
+        gameOverForm.StartPosition = FormStartPosition.Manual;
+        gameOverForm.Location = new Point(
+            Location.X + (Width - gameOverForm.Width) / 2,
+            Location.Y + (Height - gameOverForm.Height) / 2
         );
 
         Hide();
-        form4.ShowDialog();
+        gameOverForm.ShowDialog();
         Close();
     }
 
@@ -304,8 +293,6 @@ public partial class Form1 : BaseForm
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-        _tick++;
-
         if (_paused) return;
         player.Update();
         Shoot(player);
@@ -338,14 +325,14 @@ public partial class Form1 : BaseForm
             if (_level == 5)
             {
                 _level = 1;
-                if (_dificlty != 3){}
-                else if (_start_dificalty != 1)
+                if (_difficulty != 3){}
+                else if (_startDifficulty != 1)
                 {
                     GameOver();
                     return;
                 }
-                _dificlty++;
-                setDificaltyLabel();
+                _difficulty++;
+                SetDifficultyLabel();
             }
             _level++;
             labelLevel.Text = $"УРОВЕНЬ: {_level}";
@@ -480,23 +467,15 @@ public partial class Form1 : BaseForm
 
     private void button1_Click(object sender, EventArgs e)
     {
-        Form3 form3 = new Form3(this); // Передаём ссылку на текущую форму
-        form3.StartPosition = FormStartPosition.Manual;
-        form3.Location = new Point(
-            Location.X + (Width - form3.Width) / 2,
-            Location.Y + (Height - form3.Height) / 2
+        ControleForm controleForm = new ControleForm(); // Передаём ссылку на текущую форму
+        controleForm.StartPosition = FormStartPosition.Manual;
+        controleForm.Location = new Point(
+            Location.X + (Width - controleForm.Width) / 2,
+            Location.Y + (Height - controleForm.Height) / 2
         );
         Hide();
-        form3.ShowDialog();
-        //Form3 form3 = new Form3();
-        //form3.StartPosition = FormStartPosition.Manual;
-        //form3.Location = new Point(
-        //    Location.X + (Width - form3.Width) / 2,
-        //    Location.Y + (Height - form3.Height) / 2
-        //);
-        //Hide();
-        //form3.ShowDialog();
-        //Close();
+        controleForm.ShowDialog();
+        Show();
     }
 
     private void exit_button_MouseLeave(object sender, EventArgs e)
@@ -515,23 +494,15 @@ public partial class Form1 : BaseForm
 
     private void button2_Click(object sender, EventArgs e)
     {
-        Form5 form5 = new Form5(this); // Передаём ссылку на текущую форму
-        form5.StartPosition = FormStartPosition.Manual;
-        form5.Location = new Point(
-            Location.X + (Width - form5.Width) / 2,
-            Location.Y + (Height - form5.Height) / 2
+        InfoForm infoForm = new InfoForm(); // Передаём ссылку на текущую форму
+        infoForm.StartPosition = FormStartPosition.Manual;
+        infoForm.Location = new Point(
+            Location.X + (Width - infoForm.Width) / 2,
+            Location.Y + (Height - infoForm.Height) / 2
         );
         Hide();
-        form5.ShowDialog();
-        //Form5 form5 = new Form5();
-        //form5.StartPosition = FormStartPosition.Manual;
-        //form5.Location = new Point(
-        //    Location.X + (Width - form5.Width) / 2,
-        //    Location.Y + (Height - form5.Height) / 2
-        //);
-        //Hide();
-        //form5.ShowDialog();
-        //Close();
+        infoForm.ShowDialog();
+        Show();
     }
 
     private void ContinueClick(object sender, EventArgs e)
@@ -550,16 +521,14 @@ public partial class Form1 : BaseForm
 
     private void ButtonExit(object sender, EventArgs e)
     {
-        Form2 form2 = new Form2();
-        form2.StartPosition = FormStartPosition.Manual;
-        form2.Location = new Point(
-            Location.X + (Width - form2.Width) / 2,
-            Location.Y + (Height - form2.Height) / 2
+        MainMenuForm mainMenuForm = new MainMenuForm();
+        mainMenuForm.StartPosition = FormStartPosition.Manual;
+        mainMenuForm.Location = new Point(
+            Location.X + (Width - mainMenuForm.Width) / 2,
+            Location.Y + (Height - mainMenuForm.Height) / 2
         );
         Hide();
-        form2.ShowDialog();
+        mainMenuForm.ShowDialog();
         Close();
     }
-
-    public bool IsPaused => _paused;
 }

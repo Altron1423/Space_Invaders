@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using System.Diagnostics;
+using Timer = System.Windows.Forms.Timer;
 
 
 namespace Space_Invaders;
@@ -11,15 +11,15 @@ public partial class Player : Entity
 
     private bool _keyAPress, _keyDPress;
     
-    private Form1 _parentForm;
+    private GameForm _parentForm;
 
     // Переменные для бонусов
     private bool _hasShield = false;
     private bool _doubleShotActive = false;
     private bool _speedBoostActive = false;
-    private System.Windows.Forms.Timer _speedBoostTimer;
-    private System.Windows.Forms.Timer _doubleShotTimer;
-    private System.Windows.Forms.Timer _shieldTimer;
+    private Timer _speedBoostTimer;
+    private Timer _doubleShotTimer;
+    private Timer _shieldTimer;
     private int _originalSpeed;
 
     // Текущее время действия бонусов (в секундах)
@@ -27,34 +27,30 @@ public partial class Player : Entity
     private float _doubleShotRemaining = 0;
     private float _shieldRemaining = 0;
 
-    public Player()
+    public Player(IContainer container)
     {
         InitializeComponent();
         InitializePowerupTimers();
         Init();
     }
 
-    public Player(IContainer container) : this()
-    {
-        container.Add(this);
-    }
 
     private void InitializePowerupTimers()
     {
-        _speedBoostTimer = new System.Windows.Forms.Timer();
+        _speedBoostTimer = new Timer();
         _speedBoostTimer.Interval = 300; //обнавляем каждые 300мс
         _speedBoostTimer.Tick += (s, e) => UpdateSpeedBoost();
 
-        _doubleShotTimer = new System.Windows.Forms.Timer();
+        _doubleShotTimer = new Timer();
         _doubleShotTimer.Interval = 100;
         _doubleShotTimer.Tick += (s, e) => UpdateDoubleShot();
 
-        _shieldTimer = new System.Windows.Forms.Timer();
+        _shieldTimer = new Timer();
         _shieldTimer.Interval = 100;
         _shieldTimer.Tick += (s, e) => UpdateShield();
     }
 
-    public void SetParentForm(Form1 form)
+    public void SetParentForm(GameForm form)
     {
         _parentForm = form;
     }
@@ -322,9 +318,7 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
-
-
-
+    
     public void AddExtraLife()
     {
         if (_health < _max_helth)

@@ -223,6 +223,7 @@ public partial class Form1 : BaseForm
             progressBar3.Invalidate();
         }
     }
+    
     public void GameOver()
     {
         _powerupSpawnTimer.Stop();
@@ -273,9 +274,12 @@ public partial class Form1 : BaseForm
 
 
         List<Enemy> enemies = new List<Enemy>();
+        List<Powerup> powerups = new List<Powerup>();
+        List<Bullet> bullets = new List<Bullet>();
         foreach (Enemy enemy in _enemies)
         {
             enemy.Update();
+            Shoot(enemy);
             if (enemy.Health <= 0)
             {
                 enemies.Add(enemy);
@@ -293,12 +297,21 @@ public partial class Form1 : BaseForm
         {
             _level++;
             SummonStartEnemy();
-            _bullets.Clear();
-            _powerups.Clear();
+            foreach (Bullet bullet in _bullets)
+            {
+                bullets.Add(bullet);
+            }
+
+            foreach (Powerup powerup in _powerups)
+            {
+                powerups.Add(powerup);
+            }
+            RemoveBullet(bullets);
+            RemovePowerup(powerups);
+            return;
         }
 
 
-        List<Powerup> powerups = new List<Powerup>();
         foreach (Powerup powerup in _powerups)
         {
             powerup.Update();
@@ -312,7 +325,6 @@ public partial class Form1 : BaseForm
         RemovePowerup(powerups);
 
 
-        List<Bullet> bullets = new List<Bullet>();
         foreach (Bullet bullet in _bullets)
         {
             bullet.Update();
@@ -344,10 +356,7 @@ public partial class Form1 : BaseForm
             return;
         }
 
-        if (!_paused)
-        {
-            player.PlayerKeyDown(e);
-        }
+        player.PlayerKeyDown(e);
         if (e.KeyCode == Keys.R)
         {
             // Console.WriteLine(_enemies);
@@ -357,10 +366,7 @@ public partial class Form1 : BaseForm
 
     private void player_KeyUp(object sender, KeyEventArgs e)
     {
-        if (!_paused)
-        {
-            player.PlayerKeyUp(e);
-        }
+        player.PlayerKeyUp(e);
     }
 
     protected override void button_MouseMove(object sender, MouseEventArgs e)

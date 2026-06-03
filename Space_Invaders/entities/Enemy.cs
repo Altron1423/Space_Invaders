@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Space_Invaders;
 
@@ -8,13 +9,17 @@ public partial class Enemy : Entity
 {
     public EnemyType _type;
     public int points = 1;
-    public double _shootChance;
+    public double _shootChance = 15;
+    private bool shoot = false;
+    private Random _shotRanom = new Random();
+    private readonly Stopwatch _cooldownTimer = new ();
+    private TimeSpan _cooldownDuration;
 
     public Enemy(EnemyType type)
     {
         _speed = (new Random()).Next(5, 8);
         _moveOrientation = 1;
-        InitializeComponent();
+        
         _brush = Brushes.Red;
         _type = type;
         if (_type == EnemyType.Armored)
@@ -25,6 +30,9 @@ public partial class Enemy : Entity
         {
             _speed *= 2;
         }
+        InitializeComponent();
+        _cooldownTimer.Start();
+        _cooldownDuration = TimeSpan.FromSeconds(0.5);
     }
 
     public override void Update()
@@ -42,8 +50,25 @@ public partial class Enemy : Entity
 
             Top += 30;
         }
-        
+
+        if (_cooldownTimer.Elapsed >= _cooldownDuration)
+        {
+            _cooldownTimer.Restart();
+            if (_shotRanom.Next(0, 100) <= _shootChance)
+                _shoot = true;
+        }
     }
 
     public override void Die() {}
+
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public bool Shoot
+    {
+        get
+        {
+            bool sh = shoot;
+            shoot = false;
+            return sh;
+        }
+    }
 }

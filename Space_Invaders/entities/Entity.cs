@@ -29,7 +29,7 @@ public abstract partial class Entity : UserControl
     protected void Draw(object sender, PaintEventArgs e)
     {
         Graphics graphics = e.Graphics;
-        Console.WriteLine($"{Width - 1}, {Height - 1}");
+        // Console.WriteLine($"{Width - 1}, {Height - 1}");
         graphics.FillRectangle(_brush, 0, 0, Width - 1, Height - 1);
     }
 

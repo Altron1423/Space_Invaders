@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 
 namespace Space_Invaders;
@@ -8,6 +7,7 @@ namespace Space_Invaders;
 public partial class Player : Entity
 {
     const int FIRE_TYPE = 2;
+    private int _max_helth;
     
     private bool _keyAPress, _keyDPress;
     private readonly Stopwatch _cooldownTimer = new ();
@@ -64,6 +64,7 @@ public partial class Player : Entity
     protected override void Init()
     {
         _health = 3;
+        _max_helth = 5;
         _originalSpeed = 10;
         _speed = _originalSpeed;
         _moveOrientation = 0;
@@ -327,7 +328,7 @@ public partial class Player : Entity
     
     public void AddExtraLife()
     {
-        if (_health < 3)
+        if (_health < _max_helth)
         {
             _health++;
             _parentForm?.UpdateHealthDisplay(_health);

@@ -57,9 +57,9 @@ public partial class Form1
         // Console.WriteLine(entity.GetType());
         // Console.WriteLine(entity.GetType() == player.GetType());
         bool isPlayerShoot = entity.GetType() == player.GetType();
+        int damage = 1, speed = 10;
         if (isPlayerShoot)
         {
-            int damage = 1, speed = 10;
             PlayerShotEnum shot = player.Shot;
             if (shot != PlayerShotEnum.None)
                 Console.WriteLine(shot);
@@ -80,6 +80,14 @@ public partial class Form1
                 AddBullet(bullet1);
                 AddBullet(bullet2);
             }
+        }
+        else if (entity.Shoot)
+        {
+            Console.WriteLine("enemy shoot");
+            int bulletX = entity.Left + entity.Width / 2 - 2;
+            int bulletY = entity.Bottom + 20;
+            Bullet bullet = new Bullet(false, damage, speed, bulletX, bulletY);
+            AddBullet(bullet);
         }
     }
     
@@ -107,7 +115,7 @@ public partial class Form1
             type = EnemyType.Normal;
         }
         
-        Console.WriteLine(type);
+        // Console.WriteLine(type);
         summon_enemy(x, y, type);
     }
 

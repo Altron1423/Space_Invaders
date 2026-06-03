@@ -32,7 +32,7 @@ public partial class Bullet : Projectile
     protected override void IntersectsWith(Entity entity)
     {
         // Пули наносят урон только врагам
-        if (_isPlayerShoot && entity is Enemy)
+        if (_isPlayerShoot == entity is Enemy)
         {
             entity.TakeDamage(_damage);
         }

@@ -8,11 +8,11 @@ public partial class Player : Entity
 {
     const int FIRE_TYPE = 2;
     private int _max_helth;
-    
+
     private bool _keyAPress, _keyDPress;
-    private readonly Stopwatch _cooldownTimer = new ();
+    private readonly Stopwatch _cooldownTimer = new();
     private TimeSpan _cooldownDuration;
-    
+
     private Form1 _parentForm;
 
     // Переменные для бонусов
@@ -28,7 +28,7 @@ public partial class Player : Entity
     private float _speedBoostRemaining = 0;
     private float _doubleShotRemaining = 0;
     private float _shieldRemaining = 0;
-    
+
     public Player()
     {
         InitializeComponent();
@@ -36,7 +36,7 @@ public partial class Player : Entity
         Init();
     }
 
-    public Player(IContainer container): this()
+    public Player(IContainer container) : this()
     {
         container.Add(this);
     }
@@ -74,6 +74,7 @@ public partial class Player : Entity
         _cooldownTimer.Start();
         _brush = Brushes.Green;
         this.DoubleBuffered = true; // Включаем двойную буферизацию
+
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -95,7 +96,7 @@ public partial class Player : Entity
     public float GetDoubleShotRemaining() => _doubleShotRemaining;
     public float GetShieldRemaining() => _shieldRemaining;
 
-    
+
     public PlayerShotEnum Shot
     {
         get
@@ -107,14 +108,14 @@ public partial class Player : Entity
             {
                 _cooldownTimer.Restart();
                 PlayerShotEnum value = PlayerShotEnum.None;
-                if (!sh) {}
+                if (!sh) { }
                 else if (_doubleShotActive)
                     return PlayerShotEnum.TwoShot;
                 else
                     return PlayerShotEnum.OneShot;
             }
             return PlayerShotEnum.None;
-            
+
         }
     }
 
@@ -171,7 +172,7 @@ public partial class Player : Entity
         else if (e.KeyCode == Keys.Space)
             _shoot = true;
     }
-    
+
     public override void TakeDamage(int amount)
     {
         if (_hasShield)
@@ -234,8 +235,8 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
-    
-    
+
+
     public void ActivateDoubleShot(float duration)
     {
         if (!_doubleShotActive)
@@ -275,8 +276,8 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
-    
-    
+
+
     public void ActivateShield(float duration)
     {
         if (!_hasShield)
@@ -323,9 +324,9 @@ public partial class Player : Entity
         _parentForm?.UpdatePowerupIndicators();
     }
 
-    
-    
-    
+
+
+
     public void AddExtraLife()
     {
         if (_health < _max_helth)

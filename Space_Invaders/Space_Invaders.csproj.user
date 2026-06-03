@@ -4,6 +4,9 @@
     <Compile Update="CustomProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="entities\Player.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

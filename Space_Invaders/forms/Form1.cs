@@ -1,5 +1,6 @@
 using Space_Invaders.forms;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Text;
 using System.Runtime.InteropServices.Swift;
 using Timer = System.Timers.Timer;
@@ -37,11 +38,11 @@ public partial class Form1 : BaseForm
         _powerupSpawnTimer.Tick += SpawnRandomPowerup;
     }
 
-    public Form1(int dificlty): this()
+    public Form1(int dificlty) : this()
     {
         _dificlty = dificlty;
     }
-    
+
     private void Form1_Load(object sender, EventArgs e)
     {
         player.SetParentForm(this);
@@ -100,11 +101,11 @@ public partial class Form1 : BaseForm
     private void SummonStartEnemy()
     {
         int count = 10 + (int)(4 * _level * (0.5 + 0.2 * _dificlty));
-        
+
         for (int i = 0; i < count; i++)
         {
             int x = 275 + i % _lineCount * 70 + i / _lineCount % 2 * 35;
-            int y =  40 + i / _lineCount * 50;
+            int y = 40 + i / _lineCount * 50;
             summon_enemy(x, y);
         }
     }
@@ -144,7 +145,7 @@ public partial class Form1 : BaseForm
         {
             progressBar1.Maximum = 100;
             progressBar1.Value = 0;
-            progressBar1.BackColor = Color.FromArgb(255, 64, 64, 64); 
+            progressBar1.BackColor = Color.FromArgb(255, 64, 64, 64);
         }
 
         if (progressBar2 != null)
@@ -223,7 +224,7 @@ public partial class Form1 : BaseForm
             progressBar3.Invalidate();
         }
     }
-    
+
     public void GameOver()
     {
         _powerupSpawnTimer.Stop();
@@ -322,6 +323,7 @@ public partial class Form1 : BaseForm
         }
 
 
+
         foreach (Powerup powerup in _powerups)
         {
             powerup.Update();
@@ -354,7 +356,7 @@ public partial class Form1 : BaseForm
     //        //        \\
     //       || buttons ||
     //       \\        //
-    
+
     private void player_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Escape)
@@ -466,7 +468,7 @@ public partial class Form1 : BaseForm
     {
         Button bt = sender as Button;
         bt.BackColor = Color.Firebrick;
-        bt.ForeColor = Color.FromArgb(255, 64, 64, 64); 
+        bt.ForeColor = Color.FromArgb(255, 64, 64, 64);
     }
 
     private void button2_Click(object sender, EventArgs e)

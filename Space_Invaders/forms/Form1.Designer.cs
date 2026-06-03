@@ -172,9 +172,9 @@ partial class Form1
         label1.Location = new Point(688, 26);
         label1.Margin = new Padding(2, 0, 2, 0);
         label1.Name = "label1";
-        label1.Size = new Size(111, 33);
+        label1.Size = new Size(175, 33);
         label1.TabIndex = 7;
-        label1.Text = "❤️❤️❤️";
+        label1.Text = "❤️❤️❤️❤️❤️";
         label1.Visible = false;
         // 
         // progressBar1

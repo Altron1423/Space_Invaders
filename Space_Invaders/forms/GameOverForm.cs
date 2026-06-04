@@ -5,9 +5,8 @@ namespace Space_Invaders.forms
     {
         private int _start_dificalty;
         
-        public GameOverForm(int start_dificalty)
+        public GameOverForm(int start_dificalty, int score)
         {
-            _start_dificalty = start_dificalty;
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -25,6 +24,8 @@ namespace Space_Invaders.forms
             _moveForeColor = Color.FromArgb(255, 64, 64, 64);
             _leaveBackColor = Color.Maroon;
             _leaveForeColor = Color.White;
+            _start_dificalty = start_dificalty;
+            label3.Text = $"Счёт: {score}";
         }
 
         private void button1_Click(object sender, EventArgs e)

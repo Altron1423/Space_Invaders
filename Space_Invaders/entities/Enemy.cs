@@ -10,12 +10,12 @@ public partial class Enemy : Entity
     public int points = 1;
     public int _shootChance = 35;
     private bool shoot = false;
-    private Random _shotRanom = new Random();
+    private Random _shotRanom = new ();
 
     public Enemy(EnemyType type)
     {
         _cooldownDuration = TimeSpan.FromSeconds(1);
-        _speed = (new Random()).Next(5, 8);
+        _speed = new Random().Next(5, 8);
         _moveOrientation = 1;
         
         _brush = Brushes.Red;
@@ -23,13 +23,13 @@ public partial class Enemy : Entity
         if (_type == EnemyType.Armored)
         {
             _health = 3;
-            _speed = (int)(_speed * 0.7);
+            _speed -= 2;
             _brush = Brushes.DarkRed;
         }
         else if (_type == EnemyType.Fast)
         {
             _health = 1;
-            _speed *= 2;
+            _speed += 3;
             _brush = Brushes.DarkBlue;
         }
         InitializeComponent();

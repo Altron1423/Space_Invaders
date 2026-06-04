@@ -7,10 +7,32 @@ public partial class BaseForm : Form
     protected Color _leaveBackColor;
     protected Color _leaveForeColor;
     
+    private static string saveDirectory = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "SpaceInvaders"
+        );
+    private string saveFilePath = Path.Combine(saveDirectory, "highscore.txt");
+    
     
     public BaseForm()
     {
         InitializeComponent();
+        //Фиксируем размер и внешний вид формы
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
+        MinimizeBox = false;
+
+        // Устанавливаем стартовую позицию (будет переопределено при открытии из Form1)
+        StartPosition = FormStartPosition.Manual;
+        if (Screen.PrimaryScreen != null)
+        {
+            Left = (Screen.PrimaryScreen.WorkingArea.Width - Width) / 2;
+            Top = (Screen.PrimaryScreen.WorkingArea.Height - Height) / 2;
+        }
+        _moveBackColor = Color.Firebrick;
+        _moveForeColor = Color.FromArgb(255, 64, 64, 64);
+        _leaveBackColor = Color.Maroon;
+        _leaveForeColor = Color.White;
     }
     
     protected virtual void button_MouseMove(object sender, MouseEventArgs e)
@@ -33,4 +55,33 @@ public partial class BaseForm : Form
         bt.ForeColor = _leaveForeColor;
     }
 
+    protected int getHightScore()
+    {
+        checkDirection();
+        try
+        {
+            return int.Parse(File.ReadAllText(saveFilePath));
+        }
+        catch (Exception ex)
+        {
+            // MessageBox.Show("Ошибка чтения: " + ex.Message);
+        }
+        return 0;
+    }
+
+    protected void setHightScore(int score)
+    {
+        checkDirection();
+        if (score < getHightScore())
+            return;
+        File.WriteAllText(saveFilePath, score.ToString());
+    }
+
+    private void checkDirection()
+    {
+        if (!Directory.Exists(saveDirectory))
+        {
+            Directory.CreateDirectory(saveDirectory);
+        }
+    }
 }

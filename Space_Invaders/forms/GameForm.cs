@@ -105,6 +105,8 @@ public partial class GameForm : BaseForm
         progressBar1.Visible = true;
         progressBar2.Visible = true;
         progressBar3.Visible = true;
+        
+        label6.Text = $"👑 РЕКОРД: {getHightScore()}";
 
         // Инициализация индикаторов
         UpdateHealthDisplay(3);
@@ -119,7 +121,7 @@ public partial class GameForm : BaseForm
     private void SummonStartEnemy()
     {
         int count = 15 + (int)(7 * _level * (0.5 + 0.3 * _difficulty));
-        int fixLine = count / _lineCount * 50;
+        int fixLine = count / _lineCount * 40;
         for (int i = 0; i < count; i++)
         {
             int x = 275 + i % _lineCount * 70 + i / _lineCount % 2 * 35;
@@ -248,8 +250,9 @@ public partial class GameForm : BaseForm
         _powerupSpawnTimer.Stop();
         timer1.Stop();
         _paused = true;
+        setHightScore(_score);
 
-        GameOverForm gameOverForm = new GameOverForm(_startDifficulty);
+        GameOverForm gameOverForm = new GameOverForm(_startDifficulty, _score);
         gameOverForm.StartPosition = FormStartPosition.Manual;
         gameOverForm.Location = new Point(
             Location.X + (Width - gameOverForm.Width) / 2,

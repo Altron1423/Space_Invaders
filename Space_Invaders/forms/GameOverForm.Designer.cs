@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            label1 = new Label();
-            label2 = new Label();
+            button1 = new System.Windows.Forms.Button();
+            button2 = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(0, 64, 0);
-            button1.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(242, 424);
+            button1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)0)), ((int)((byte)64)), ((int)((byte)0)));
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            button1.ForeColor = System.Drawing.Color.White;
+            button1.Location = new System.Drawing.Point(242, 424);
             button1.Name = "button1";
-            button1.Size = new Size(111, 49);
+            button1.Size = new System.Drawing.Size(111, 49);
             button1.TabIndex = 0;
             button1.Text = "Да";
             button1.UseVisualStyleBackColor = false;
@@ -51,12 +52,12 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.Maroon;
-            button2.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(530, 424);
+            button2.BackColor = System.Drawing.Color.Maroon;
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            button2.ForeColor = System.Drawing.Color.White;
+            button2.Location = new System.Drawing.Point(530, 424);
             button2.Name = "button2";
-            button2.Size = new Size(111, 49);
+            button2.Size = new System.Drawing.Size(111, 49);
             button2.TabIndex = 1;
             button2.Text = "Нет";
             button2.UseVisualStyleBackColor = false;
@@ -67,39 +68,52 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.ForeColor = Color.Red;
-            label1.Location = new Point(227, 207);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
+            label1.ForeColor = System.Drawing.Color.Red;
+            label1.Location = new System.Drawing.Point(227, 207);
             label1.Name = "label1";
-            label1.Size = new Size(452, 55);
+            label1.Size = new System.Drawing.Size(452, 55);
             label1.TabIndex = 2;
             label1.Text = "💀 Игра окончена!";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(362, 376);
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(362, 376);
             label2.Name = "label2";
-            label2.Size = new Size(171, 29);
+            label2.Size = new System.Drawing.Size(171, 29);
             label2.TabIndex = 3;
             label2.Text = "Продолжить?";
             // 
-            // Form4
+            // label3
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            ClientSize = new Size(914, 561);
+            label3.Font = new System.Drawing.Font("Segoe UI", 30F);
+            label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            label3.Location = new System.Drawing.Point(307, 283);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(287, 56);
+            label3.TabIndex = 4;
+            label3.Text = "Счёт: 0";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // GameOverForm
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.Black;
+            ClientSize = new System.Drawing.Size(914, 561);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "GameOverForm";
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private System.Windows.Forms.Label label3;
 
         #endregion
 

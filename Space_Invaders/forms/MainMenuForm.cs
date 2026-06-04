@@ -23,6 +23,7 @@ namespace Space_Invaders
             _moveForeColor = Color.FromArgb(255, 64, 64, 64);
             _leaveBackColor = Color.Maroon;
             _leaveForeColor = Color.White;
+            getHightScore();
         }
 
         private void button1_Click(object sender, EventArgs e)
